@@ -8,10 +8,10 @@
 		<version>2.5.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>fiados</groupId>
+	<groupId>fiados.com</groupId>
 	<artifactId>com</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>com</name>
+	<name>fiados.com</name>
 	<description>App Control Fiados</description>
 	<properties>
 		<java.version>11</java.version>
