@@ -23,4 +23,8 @@ public class Trade extends User{
     @OneToMany
     @JoinColumn(name = "address_id")
     private Set<Address> addressSet = new HashSet<>();
+
+    @OneToMany(mappedBy = "trade")
+    private Set<Debt> debts = new HashSet<>();
+
 }
