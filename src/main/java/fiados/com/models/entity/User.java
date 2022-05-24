@@ -1,26 +1,28 @@
 
 package fiados.com.models.entity;
 
-import fiados.com.models.enums.EnumCondition;
 import fiados.com.models.enums.EnumRoles;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @MappedSuperclass
-public class User {
+public class User implements UserDetails {
 
     private String firstName;
 
@@ -36,6 +38,9 @@ public class User {
 
     private EnumRoles role;
 
+    @Column(unique = true)
+    private String dni;
+
     private boolean softDelete;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
@@ -43,4 +48,41 @@ public class User {
     private Set<Role> roles;
 
     private List<Debts> debts;
+
+    private List<Points> points;
+
+    private List<Address> addresses;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.getRoles().stream().map(
+                        role -> new SimpleGrantedAuthority(role.getName()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return !this.softDelete;
+    }
+
 }

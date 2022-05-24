@@ -26,7 +26,5 @@ public class Address {
 
     private String Country;
 
-    @OneToOne(mappedBy = "costumer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Customer customer;
 
 }
