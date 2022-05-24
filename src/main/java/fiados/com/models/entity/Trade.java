@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,5 +20,7 @@ public class Trade extends User{
     @Column(name = "trade_id")
     private Long id;
 
-
+    @OneToMany
+    @JoinColumn(name = "address_id")
+    private Set<Address> addressSet = new HashSet<>();
 }
