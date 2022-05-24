@@ -1,4 +1,4 @@
-package fiados.com.auth.config.seeder;
+package fiados.com.auth.config.seeders;
 
 
 import org.springframework.stereotype.Service;
