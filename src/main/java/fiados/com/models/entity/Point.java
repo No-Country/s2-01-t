@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter @Setter
 @Entity
-public class Points {// puntos
+public class Point {// puntos
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

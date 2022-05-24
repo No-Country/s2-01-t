@@ -47,11 +47,11 @@ public class User implements UserDetails {
     @Column(name = "role_id")
     private Set<Role> roles;
 
-    private List<Debts> debts;
+    private List<Debt> debts;
 
-    private List<Points> points;
+    private List<Point> points;
 
-    private List<Address> addresses;
+    private List<Address> address;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
