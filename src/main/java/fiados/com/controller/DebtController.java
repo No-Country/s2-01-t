@@ -5,5 +5,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/branch")
-public class DebtsController {
+public class DebtController {
 }

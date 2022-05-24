@@ -20,8 +20,8 @@ public class Customer extends User{
     @Column(name = "customer_id")
     private Long id;
 
-    @OneToMany(mappedBy = "costumer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Comments> comments = new ArrayList<>();
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Comment> comment = new ArrayList<>();
 
 
 }
