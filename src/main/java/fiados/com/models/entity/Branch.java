@@ -20,5 +20,9 @@ public class Branch {//sucursal
 
     private String description;
 
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
+
 
 }

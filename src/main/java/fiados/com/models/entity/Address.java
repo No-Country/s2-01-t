@@ -26,5 +26,11 @@ public class Address {
 
     private String Country;
 
+    @OneToOne(mappedBy = "address",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Customer customer;
+
+    @OneToOne(mappedBy = "address",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Branch branch;
+
 
 }
