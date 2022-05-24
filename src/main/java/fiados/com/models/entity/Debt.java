@@ -28,11 +28,10 @@ public class Debt {//deudas
     private LocalDateTime date;
 
     @Enumerated(value = EnumType.STRING)
-    private EnumCondition condition;
+    private EnumCondition conditions;//condition es reservada agregue la "s" para que funcione
 
+    @JoinColumn(name = "customer_id")
+    @ManyToOne
     private Customer customer;
-
-    private Trade trade;
-
 
 }

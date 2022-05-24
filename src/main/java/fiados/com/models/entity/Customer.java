@@ -1,13 +1,15 @@
 package fiados.com.models.entity;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,8 +22,6 @@ public class Customer extends User{
     @Column(name = "customer_id")
     private Long id;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Comment> comment = new ArrayList<>();
-
-
+    @OneToMany(mappedBy = "customer")
+    private Set<Debt> debts = new HashSet<>();
 }
