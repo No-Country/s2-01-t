@@ -34,4 +34,8 @@ public class Debt {//deudas
     @ManyToOne
     private Customer customer;
 
+    @JoinColumn(name = "trade_id")
+    @ManyToOne
+    private Trade trade;
+
 }
