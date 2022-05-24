@@ -13,9 +13,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 @Setter
 @MappedSuperclass
 public class User implements UserDetails {
+
 
     private String firstName;
 
@@ -47,11 +48,6 @@ public class User implements UserDetails {
     @Column(name = "role_id")
     private Set<Role> roles;
 
-    private List<Debts> debts;
-
-    private List<Points> points;
-
-    private List<Address> addresses;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -84,5 +80,4 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return !this.softDelete;
     }
-
 }

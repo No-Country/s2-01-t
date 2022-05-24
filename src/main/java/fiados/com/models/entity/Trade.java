@@ -17,4 +17,6 @@ public class Trade extends User{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "trade_id")
     private Long id;
+
+
 }

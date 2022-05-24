@@ -11,11 +11,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Setter @Getter
 @Entity
-public class Comments {//comentarios
+public class Comment {//comentarios
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "comments_id")
+    @Column(name = "comment_id")
     private Long id;
 
     @ManyToOne
