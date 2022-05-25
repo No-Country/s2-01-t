@@ -15,6 +15,7 @@ import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.hibernate.annotations.GenericGenerator;
 
 
 @AllArgsConstructor
@@ -23,8 +24,10 @@ import java.util.stream.Collectors;
 @Setter
 @MappedSuperclass
 public class User implements UserDetails {
-
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
+    private Long id;
     private String firstName;
 
     private String lastName;

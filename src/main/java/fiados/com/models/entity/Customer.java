@@ -1,6 +1,7 @@
 package fiados.com.models.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,12 +14,8 @@ import java.util.Set;
 @NoArgsConstructor
 @Setter @Getter
 @Entity
+@PrimaryKeyJoinColumn(name = "customer_Id")
 public class Customer extends User{
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_id")
-    private Long id;
 
     @OneToMany(mappedBy = "customer")
     private Set<Debt> debts = new HashSet<>();
@@ -26,4 +23,6 @@ public class Customer extends User{
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
+  
+   
 }

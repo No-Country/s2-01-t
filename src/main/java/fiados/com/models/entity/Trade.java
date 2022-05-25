@@ -13,12 +13,8 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter @Setter
 @Entity
-public class Trade extends User{
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "trade_id")
-    private Long id;
+@PrimaryKeyJoinColumn(name = "trade_Id")
+public class Trade extends User{    
 
     @OneToMany
     @JoinColumn(name = "address_id")
