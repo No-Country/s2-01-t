@@ -25,9 +25,10 @@ import org.hibernate.annotations.GenericGenerator;
 @MappedSuperclass
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid",strategy = "uuid2")
     
-    private Long id;
+    private String id;
     private String firstName;
 
     private String lastName;

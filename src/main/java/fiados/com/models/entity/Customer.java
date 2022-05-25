@@ -1,13 +1,12 @@
 package fiados.com.models.entity;
 
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -23,6 +22,9 @@ public class Customer extends User{
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
-  
-   
+    
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name = "comment_customer", joinColumns ={@JoinColumn(name = "id_customer")},
+    inverseJoinColumns = {@JoinColumn(name = "id_comment")}) 
+    private List<Comment> comment;
 }

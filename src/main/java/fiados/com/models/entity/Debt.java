@@ -29,11 +29,16 @@ public class Debt {//deudas
 
     @Enumerated(value = EnumType.STRING)
     private EnumCondition conditions;//condition es reservada agregue la "s" para que funcione
-
+    
+    private Double amount_total;
+    
     @JoinColumn(name = "customer_id")
     @ManyToOne
     private Customer customer;
-
+    
+    @OneToOne
+    private Branch brach;
+    
     @JoinColumn(name = "trade_id")
     @ManyToOne
     private Trade trade;
