@@ -17,18 +17,20 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Getter
 @Setter
-@MappedSuperclass
+@Entity
 public class User implements UserDetails {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String firstName;
 
     private String lastName;
-
     @NotBlank(message = "Email cannot be empty.")
     @Column(unique = true, nullable = false)
     private String email; // es el username
@@ -36,8 +38,6 @@ public class User implements UserDetails {
     @NotBlank(message = "Password cannot be empty.")
     @Size(min = 8, max = 250, message = "Password should have at least 8 characters")
     private String password;
-
-    private EnumRoles role;
 
     @Column(unique = true)
     private String dni;

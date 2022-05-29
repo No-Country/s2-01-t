@@ -18,7 +18,6 @@ public class Comment {//comentarios
     @Column(name = "comment_id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Customer customer;
 }

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -15,15 +16,13 @@ import java.util.Set;
 @Entity
 public class Customer extends User{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_id")
-    private Long id;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private Set<Debt> debts = new HashSet<>();
 
-    @OneToOne
-    @JoinColumn(name = "address_id")
-    private Address address;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Comment> comments ;
+
+    @OneToOne(mappedBy = "customer")
+    private Point point;
 }

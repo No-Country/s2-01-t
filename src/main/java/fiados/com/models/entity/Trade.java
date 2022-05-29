@@ -15,16 +15,11 @@ import java.util.Set;
 @Entity
 public class Trade extends User{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "trade_id")
-    private Long id;
-
-    @OneToMany
-    @JoinColumn(name = "address_id")
-    private Set<Address> addressSet = new HashSet<>();
 
     @OneToMany(mappedBy = "trade")
     private Set<Debt> debts = new HashSet<>();
+
+    @OneToOne(mappedBy = "trade")
+    private Point point;
 
 }

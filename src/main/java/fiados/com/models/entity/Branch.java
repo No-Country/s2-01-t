@@ -18,11 +18,9 @@ public class Branch {//sucursal
     @Column(name = "branch_id")
     private Long id;
 
-    private String description;
+    private String descriptions;
 
-    @OneToOne
-    @JoinColumn(name = "address_id")
-    private Address address;
+
 
 
 }

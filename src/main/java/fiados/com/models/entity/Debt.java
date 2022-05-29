@@ -30,12 +30,10 @@ public class Debt {//deudas
     @Enumerated(value = EnumType.STRING)
     private EnumCondition conditions;//condition es reservada agregue la "s" para que funcione
 
-    @JoinColumn(name = "customer_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Customer customer;
 
-    @JoinColumn(name = "trade_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Trade trade;
 
 }
