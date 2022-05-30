@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserDetailsService, AuthService {
         if(userRepository.findByEmail(request.getEmail()) != null){
             throw new RuntimeException(USER_EMAIL_ERROR);
         }
-       if(request.getRole().equalsIgnoreCase("Cliente")) {
+       if(request.getRole().equalsIgnoreCase("client")) {
            Customer customer = userMapper.entityToDTO(request);
            customer.setPassword(passwordEncoder.encode(request.getPassword()));
            List<Role> roles = new ArrayList<>();
@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserDetailsService, AuthService {
            return response;
        }
 
-       if(request.getRole().equalsIgnoreCase("Comerciante")){
+       if(request.getRole().equalsIgnoreCase("shop")){
            Trade trade = userMapper.entityTradeToDTO(request);
            trade.setPassword(passwordEncoder.encode(request.getPassword()));
            List<Role> roles = new ArrayList<>();
