@@ -24,12 +24,14 @@ public class UserMapper {
 
     public UserResponse dtoToEntity(Customer entity) {
         UserResponse response = new UserResponse();
+        response.setId(entity.getId());
         response.setEmail(entity.getEmail());
         return response;
     }
 
     public UserResponse dtoToEntityTrade(Trade entity) {
         UserResponse response = new UserResponse();
+         response.setId(entity.getId());
         response.setEmail(entity.getEmail());
         return response;
     }
