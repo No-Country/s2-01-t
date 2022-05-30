@@ -3,7 +3,7 @@ package fiados.com.models.enums;
 public enum EnumRoles {
 
     USER("USER"),
-    CLIENT("STAFF"),
+    CUSTOMER("CUSTOMER"),
     MERCHANT("MERCHANT");
 
     private static final String ROLE_PREFIX = "ROLE_";
