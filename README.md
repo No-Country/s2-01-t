@@ -1,5 +1,4 @@
 
-
 **FiadosYa** 
 
 **Acerca del proyecto**
@@ -20,11 +19,5 @@ También puntuarlos para que otros comercios tengan una referencia de ese client
 [Marcos Goncheff](https://www.linkedin.com/in/marcos-paz-goncheff/)</br>
 [Abel Acevedo](https://www.linkedin.com/in/abel-fernando-acevedo/)</br>
 [Gabriel Navarro](https://www.linkedin.com/in/gabriel-navarro-233388219/)
-
- 
-
-
-
-
 
 
