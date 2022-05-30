@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserDetailsService, AuthService {
            return response;
        }
        else {
-           throw new RuntimeException("El rol no existe o Email ya esta registrado");
+           throw new RuntimeException("The role does not exist.");
        }
     }
 
