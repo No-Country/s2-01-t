@@ -1,5 +1,6 @@
 package fiados.com.models.entity;
 
+import fiados.com.models.enums.EnumCondition;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,5 +22,5 @@ public class Trade extends User{
 
     @OneToOne(mappedBy = "trade")
     private Point point;
-
+    private EnumCondition status;
 }

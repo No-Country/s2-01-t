@@ -2,6 +2,7 @@ package fiados.com.models.mapper;
 
 import fiados.com.models.entity.Customer;
 import fiados.com.models.entity.Trade;
+import fiados.com.models.enums.EnumCondition;
 import fiados.com.models.request.UserRegister;
 import fiados.com.models.response.UserResponse;
 import org.springframework.stereotype.Component;
@@ -45,6 +46,7 @@ public class UserMapper {
         user.setRole(request.getRole());
         user.setCity(request.getCity());
         user.setDirection(request.getDirection());
+        user.setStatus(EnumCondition.PAUSED);
         return user;
     }
 }
