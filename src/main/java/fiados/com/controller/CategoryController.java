@@ -2,7 +2,6 @@ package fiados.com.controller;
 
 
 import fiados.com.models.request.CategoryRequest;
-import fiados.com.models.response.CategoryResponse;
 import fiados.com.service.abstraction.CategoryService;
 import java.net.URISyntaxException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ public class CategoryController {
     private CategoryService service;
 
 
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping("")
     public ResponseEntity<?> createCategory(
             @RequestBody CategoryRequest category)
             throws URISyntaxException, NotFoundException {       

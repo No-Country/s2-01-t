@@ -19,6 +19,6 @@ public class CategoryRequest {
     private String name;
     @Column(name = "decription")
     private String description;
-    private Boolean status;
+
  
 }

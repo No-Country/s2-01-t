@@ -62,7 +62,7 @@ public class CategoryServiceImpl implements CategoryService {
          Category  entityById = categoryRepository.findById(id).orElseThrow();        
       
         try {
-            categoryRepository.save(categoryMapper.requestDtoEntity(entity));
+            categoryRepository.save(categoryMapper.DtoEntity(entityById,entity));
             return new ResponseEntity<>("Category updated succesfully!",
                     HttpStatus.OK);
         } catch (Exception e) {
