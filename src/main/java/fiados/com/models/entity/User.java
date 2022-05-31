@@ -43,7 +43,6 @@ public class User implements UserDetails {
     private String city;
 
     private String direction;
-
     private boolean softDelete;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
