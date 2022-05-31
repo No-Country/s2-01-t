@@ -23,31 +23,31 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    protected Long id;
 
-    private String firstName;
+    protected String firstName;
 
-    private String lastName;
+    protected String lastName;
     @NotBlank(message = "Email cannot be empty.")
    // @Column(unique = true, nullable = false)
-    private String email; // es el username
+    protected String email; // es el username
 
     @NotBlank(message = "Password cannot be empty.")
     @Size(min = 8, max = 250, message = "Password should have at least 8 characters")
-    private String password;
+    protected String password;
 
-    private String role;
+    protected String role;
 
-    private String dni;
+    protected String dni;
 
-    private String city;
+    protected String city;
 
-    private String direction;
-    private boolean softDelete;
+    protected String direction;
+    protected boolean softDelete;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @Column(name = "role_id")
-    private List<Role> roles;
+    protected List<Role> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
