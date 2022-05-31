@@ -25,4 +25,6 @@ public class Trade extends User{
     @JoinColumn(name = "point_id", referencedColumnName = "point_id")
     private Point point;
     private EnumCondition status;
+    @OneToMany(mappedBy = "trade", cascade = CascadeType.ALL)
+    private Branch brach;
 }

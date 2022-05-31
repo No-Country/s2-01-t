@@ -15,12 +15,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
 
-    private static final String ERROR_FIND_ID = "No se econtro la categoria";
+    private static final String ERROR_FIND_ID = "Category not found";
     private static final String ERROR_CONECTION = "Error al intentar conectar con la BD";
     private static final String ERROR_NOT_LIST_CATEGORY = "No se encontro categorias";
     @Autowired
@@ -59,7 +60,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     @Override
     public ResponseEntity<?> update(Long id, CategoryRequest entity) {
-         Category  entityById = categoryRepository.findById(id).orElseThrow();        
+         Category  entityById = categoryRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,ERROR_FIND_ID));        
       
         try {
             categoryRepository.save(categoryMapper.DtoEntity(entityById,entity));
@@ -76,7 +77,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryResponse findById(Long id) {
         try {
-            Category entityById = categoryRepository.findById(id).orElseThrow();        
+            Category entityById = categoryRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,ERROR_FIND_ID));        
             CategoryResponse entityResponse = categoryMapper.categoryDto(entityById);
                 return entityResponse;
           
@@ -107,7 +108,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     @Override
     public void delete(Long id) throws EntityNotFoundException {
-        Category category = categoryRepository.findById(id).orElseThrow();
+        Category category = categoryRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,ERROR_FIND_ID));
         category.setSoft_deleted(true);      
         categoryRepository.save(category);
     }

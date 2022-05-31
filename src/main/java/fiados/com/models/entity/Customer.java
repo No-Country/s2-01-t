@@ -16,7 +16,6 @@ import java.util.Set;
 @Entity
 public class Customer extends User{
 
-
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private Set<Debt> debts = new HashSet<>();
 
