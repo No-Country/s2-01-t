@@ -22,7 +22,6 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-
     @GetMapping
     public List<CustomerResponse> getAllProfessions(){
         return customerService.getAllUser();

@@ -20,7 +20,9 @@ public class Trade extends User{
     @OneToMany(mappedBy = "trade")
     private Set<Debt> debts = new HashSet<>();
 
-    @OneToOne(mappedBy = "trade")
+    //@OneToOne(mappedBy = "trade")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "point_id", referencedColumnName = "point_id")
     private Point point;
     private EnumCondition status;
 }

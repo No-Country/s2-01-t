@@ -24,11 +24,11 @@ public class Point {// puntos
 
     private int point;
 
-    @OneToOne
-    @JoinColumn(name = "customer_id")
+    @OneToOne(mappedBy = "point")
+   // @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToOne
-    @JoinColumn(name = "trade_id")
+    @OneToOne(mappedBy = "point")
+    //@JoinColumn(name = "trade_id")
     private Trade trade;
 }
