@@ -1,17 +1,17 @@
+
 package fiados.com.service;
 
-import fiados.com.models.entity.Customer;
-import fiados.com.models.request.CustomerRequest;
-import fiados.com.models.response.CustomerResponse;
-import fiados.com.service.abstraction.CustomerService;
+import fiados.com.models.entity.Trade;
+import fiados.com.models.request.TraderRequest;
+import fiados.com.models.response.TradeResponse;
+import fiados.com.service.abstraction.TradeService;
 import java.util.List;
-import org.springframework.stereotype.Service;
 
-@Service
-public class CustomerServiceImpl implements CustomerService {
+
+public class TradeServiceImpl implements TradeService{
 
     @Override
-    public Customer getInfoUser() {
+    public Trade getInfoUser() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -21,21 +21,20 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerResponse update(Long id, CustomerRequest request) {
+    public TradeResponse update(Long id, TraderRequest request) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public CustomerResponse getById(Long id) {
+    public TradeResponse getById(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<CustomerResponse> getAllUser() {
+    public List<TradeResponse> getAllUser() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-   
 
- 
+    
 }
