@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -20,11 +21,10 @@ public class Trade extends User{
     @OneToMany(mappedBy = "trade")
     private Set<Debt> debts = new HashSet<>();
 
-    //@OneToOne(mappedBy = "trade")
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "point_id", referencedColumnName = "point_id")
     private Point point;
     private EnumCondition status;
-    @OneToMany(mappedBy = "trade", cascade = CascadeType.ALL)
-    private Branch brach;
+    @OneToMany (mappedBy = "trade", cascade = CascadeType.ALL)
+    private List<Branch> brach;
 }

@@ -1,9 +1,8 @@
 
 package fiados.com.models.request;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 import fiados.com.models.entity.Customer;
-import java.time.LocalDateTime;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;

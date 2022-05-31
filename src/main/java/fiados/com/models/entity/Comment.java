@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @AllArgsConstructor
@@ -23,6 +24,7 @@ public class Comment {//comentarios
     private Long id;
    
     @NotBlank
+    @NotEmpty(message = "Agrega un comentario")
     @Size(min = 3, max = 100, message = "Comment must be between 3 and 100 characters long")
     private String comment;
     
