@@ -1,16 +1,25 @@
 package fiados.com.service;
 
+import fiados.com.models.entity.Comment;
 import fiados.com.models.entity.Customer;
 import fiados.com.models.mapper.CustomerMapper;
+import fiados.com.models.request.CommentRequest;
 import fiados.com.models.request.CustomerRequest;
+import fiados.com.models.response.CustomerComment;
 import fiados.com.models.response.CustomerResponse;
 import fiados.com.repository.CustomerRepository;
+import fiados.com.repository.UserRepository;
+import fiados.com.service.abstraction.CommentService;
 import fiados.com.service.abstraction.CustomerService;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
@@ -19,13 +28,26 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
     @Autowired
     private CustomerMapper customerMapper;
+    @Autowired
+    private CommentService commentService;
+    @Autowired 
+    private UserRepository userRepository;
     
     private static final String ERROR_USER_NOT_FOUND = "the searched user does not exist";
     
     
     @Override
     public Customer getInfoUser() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+      Object userInstance = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        try {
+           if(userInstance instanceof Customer){
+            String username =  ((Customer) userInstance).getUsername();
+        
+           }
+        }catch (Exception e) {
+           throw new UsernameNotFoundException("User not found");                   
+        }  
+        return (Customer) userRepository.findByEmail(userInstance.toString());
     }
 
     @Override
@@ -37,11 +59,18 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    @Transactional
     public CustomerResponse update(Long id, CustomerRequest request) {
-         Customer customer = customerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+        try {
+             Customer customer = (Customer) userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                 ERROR_USER_NOT_FOUND));         
          Customer customerSaved=customerMapper.updateDto(customer, request);
-         return customerMapper.entityToDTO(customerRepository.save(customerSaved));
+         return customerMapper.entityToDTO(userRepository.save(customerSaved));
+            
+        } catch (Exception e) {
+            throw new UsernameNotFoundException("User not found"+e.getMessage()); 
+        }
+       
        }
 
     @Override
@@ -58,7 +87,19 @@ public class CustomerServiceImpl implements CustomerService {
                 .collect(Collectors.toList()); 
     }
 
-   
+    @Override
+    public CustomerComment commentUser(String comment) {
+        Customer customer=getInfoUser();
+       List<Comment> comments=new ArrayList<>();
+       Comment response=commentService.addComment( CommentRequest.builder()
+                .comment(comment)
+                .customer(customer)
+                .build());
+        comments.add(response);
+        customer.setComments(comments);       
+        
+        return customerMapper.dtoCustomerComment( customerRepository.save(customer), response);
+    }
+  
 
- 
 }

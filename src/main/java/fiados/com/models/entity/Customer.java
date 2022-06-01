@@ -22,7 +22,7 @@ public class Customer extends User{
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Comment> comments ;
 
-    //@OneToOne(mappedBy = "customer")
+   
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "point_id", referencedColumnName = "point_id")
     private Point point;

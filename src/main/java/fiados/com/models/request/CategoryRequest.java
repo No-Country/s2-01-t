@@ -1,6 +1,7 @@
 
 package fiados.com.models.request;
 
+import fiados.com.models.entity.Customer;
 import javax.persistence.Column;
 import javax.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,6 @@ public class CategoryRequest {
     private String name;
     @Column(name = "decription")
     private String description;
-
+    private Customer customer;
  
 }
