@@ -1,12 +1,19 @@
 package fiados.com.models.mapper;
 
+import fiados.com.models.entity.Comment;
 import fiados.com.models.request.CommentRequest;
-import fiados.com.models.response.CommentResponse;
+import java.time.LocalDateTime;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CommentMapper {
-    public CommentResponse dtoToDto (CommentRequest request){
-        return null;
+   
+    
+    public Comment commentToDto (CommentRequest request){
+        return Comment.builder()
+                .comment(request.getComment())
+                .customer(request.getCustomer())
+                .date(LocalDateTime.now() )
+                .build();
     }
 }

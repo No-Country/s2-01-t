@@ -24,9 +24,9 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
-
+    @NotBlank(message = "First Name cannot be empty.")
     protected String firstName;
-
+    @NotBlank(message = "Last Name cannot be empty.")
     protected String lastName;
     @NotBlank(message = "Email cannot be empty.")
    // @Column(unique = true, nullable = false)
@@ -35,9 +35,9 @@ public class User implements UserDetails {
     @NotBlank(message = "Password cannot be empty.")
     @Size(min = 8, max = 250, message = "Password should have at least 8 characters")
     protected String password;
-
+    @NotBlank(message = "Role cannot be empty.")
     protected String role;
-
+   @NotBlank(message = "Dni cannot be empty.")
     protected String dni;
 
     protected String city;

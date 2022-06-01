@@ -1,5 +1,6 @@
 package fiados.com.service;
 
+import fiados.com.models.entity.Comment;
 import fiados.com.models.entity.Customer;
 import fiados.com.models.entity.User;
 import fiados.com.models.mapper.CustomerMapper;
@@ -9,11 +10,11 @@ import fiados.com.models.response.CustomerResponse;
 import fiados.com.repository.CustomerRepository;
 import fiados.com.service.abstraction.CommentService;
 import fiados.com.service.abstraction.CustomerService;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -78,14 +79,14 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void commentUser(String comment) {
         Customer customer=getInfoUser();
-       
-        commentService.addComment( CommentRequest.builder()
+       List<Comment> comments=new ArrayList<>();
+       comments.add(commentService.addComment( CommentRequest.builder()
                 .comment(comment)
                 .customer(customer)
-                .build(););
+                .build()));
+        customer.setComments(comments);
+        customerRepository.save(customer);
     }
+  
 
-   
-
- 
 }

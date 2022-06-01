@@ -5,6 +5,7 @@ import fiados.com.models.entity.Customer;
 import fiados.com.models.entity.Role;
 import fiados.com.models.entity.Trade;
 import fiados.com.models.entity.User;
+import fiados.com.models.enums.EnumCondition;
 import fiados.com.models.enums.EnumRoles;
 import fiados.com.models.mapper.UserMapper;
 import fiados.com.models.request.AuthRequest;
@@ -73,6 +74,7 @@ public class UserServiceImpl implements UserDetailsService, AuthService {
            trade.setPassword(passwordEncoder.encode(request.getPassword()));
            List<Role> roles = new ArrayList<>();
            roles.add(roleService.findBy(EnumRoles.MERCHANT.getFullRoleName()));
+           trade.setStatus(EnumCondition.PAUSED);
            trade.setRoles(roles);
            Trade tradeCreate = tradeRepository.save(trade);
            UserResponse response = userMapper.dtoToEntityTrade(tradeCreate);

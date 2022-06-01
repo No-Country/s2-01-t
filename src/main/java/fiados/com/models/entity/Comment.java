@@ -11,11 +11,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import lombok.Builder;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter @Getter
 @Entity
+@Builder
 public class Comment {//comentarios
 
     @Id

@@ -6,6 +6,7 @@ import fiados.com.service.abstraction.CustomerService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,15 +17,23 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/api/v1/customer")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class CustomerController {
     
     private final CustomerService customerService;
-    @GetMapping
-    public List<CustomerResponse> getAllProfessions(){
+    
+    @GetMapping("")
+    public List<CustomerResponse> getAllCustomers(){
         return customerService.getAllUser();
     }
+    
+    @GetMapping("")
+    public CustomerResponse getCustomer(@PathVariable Long id){
+        return customerService.getById(id);
+    }
+    
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@PathVariable Long id, @RequestBody CustomerRequest request){
