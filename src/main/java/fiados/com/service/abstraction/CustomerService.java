@@ -2,6 +2,7 @@ package fiados.com.service.abstraction;
 
 import fiados.com.models.entity.Customer;
 import fiados.com.models.request.CustomerRequest;
+import fiados.com.models.response.CustomerComment;
 import fiados.com.models.response.CustomerResponse;
 import java.util.List;
 
@@ -12,6 +13,6 @@ public interface CustomerService{
     public CustomerResponse getById(Long id);
     public List<CustomerResponse> getAllUser();
     //comments
-    public void commentUser(String comment);
+    public CustomerComment commentUser(String comment);
     
 }

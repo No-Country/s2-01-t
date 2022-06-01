@@ -1,5 +1,6 @@
 
 package fiados.com.models.entity;
+import fiados.com.models.enums.EnumCondition;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,10 +29,8 @@ public class User implements UserDetails {
     protected String firstName;
     @NotBlank(message = "Last Name cannot be empty.")
     protected String lastName;
-    @NotBlank(message = "Email cannot be empty.")
-   // @Column(unique = true, nullable = false)
-    protected String email; // es el username
-
+    @NotBlank(message = "Email cannot be empty.") 
+    protected String email;
     @NotBlank(message = "Password cannot be empty.")
     @Size(min = 8, max = 250, message = "Password should have at least 8 characters")
     protected String password;
@@ -39,9 +38,7 @@ public class User implements UserDetails {
     protected String role;
    @NotBlank(message = "Dni cannot be empty.")
     protected String dni;
-
     protected String city;
-
     protected String direction;
     protected boolean softDelete;
 

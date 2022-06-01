@@ -1,6 +1,7 @@
 package fiados.com.controller;
 
 import fiados.com.models.request.CustomerRequest;
+import fiados.com.models.response.CustomerComment;
 import fiados.com.models.response.CustomerResponse;
 import fiados.com.service.abstraction.CustomerService;
 import java.util.List;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,12 +26,12 @@ public class CustomerController {
     
     private final CustomerService customerService;
     
-    @GetMapping("")
+    @GetMapping("/all")
     public List<CustomerResponse> getAllCustomers(){
         return customerService.getAllUser();
     }
     
-    @GetMapping("")
+    @GetMapping("{id}")
     public CustomerResponse getCustomer(@PathVariable Long id){
         return customerService.getById(id);
     }
@@ -45,4 +47,11 @@ public class CustomerController {
     public void deleteById(@PathVariable Long id) {
         customerService.delete(id);
     }
+    
+    @PostMapping("/customer_comment")
+    @ResponseStatus(HttpStatus.CREATED)
+    public CustomerComment commentCustomer(@RequestBody String comment){
+        return  customerService.commentUser(comment);
+    }
+    
 }
