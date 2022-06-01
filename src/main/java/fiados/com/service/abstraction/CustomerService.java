@@ -11,4 +11,7 @@ public interface CustomerService{
     public CustomerResponse update(Long id, CustomerRequest request);    
     public CustomerResponse getById(Long id);
     public List<CustomerResponse> getAllUser();
+    //comments
+    public void commentUser(String comment);
+    
 }
