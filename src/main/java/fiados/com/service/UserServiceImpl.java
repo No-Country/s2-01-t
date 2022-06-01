@@ -96,7 +96,10 @@ public class UserServiceImpl implements UserDetailsService, AuthService {
     private User getUser(String username) {
         User user = userRepository.findByEmail(username);
         if (user == null) {
-            throw new UsernameNotFoundException(USER_NOT_FOUND_MESSAGE);
+            throw new RuntimeException("The email entered is not correct.");
+        }
+        if(user.isSoftDelete()){
+            throw new RuntimeException("The user is deleted.");
         }
         return user;
     }

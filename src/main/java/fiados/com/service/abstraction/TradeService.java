@@ -13,4 +13,6 @@ public interface TradeService {
     public TradeResponse update(Long id, TraderRequest request);    
     public TradeResponse getById(Long id);
     public List<TradeResponse> getAllUser();
+
+
 }
