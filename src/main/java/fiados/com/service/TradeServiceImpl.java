@@ -1,12 +1,16 @@
 
 package fiados.com.service;
 
+import fiados.com.models.entity.Customer;
 import fiados.com.models.entity.Trade;
 import fiados.com.models.request.TraderRequest;
 import fiados.com.models.response.TradeResponse;
 import fiados.com.repository.TradeRepository;
+import fiados.com.repository.UserRepository;
 import fiados.com.service.abstraction.TradeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,9 +23,20 @@ public class TradeServiceImpl implements TradeService{
 
     @Autowired
     private TradeRepository tradeRepository;
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     public Trade getInfoUser() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            try {
+                if(principal instanceof Trade) {
+                    String userName = ((Trade) principal).getUsername();
+                }
+            }catch (Exception e) {
+                throw new UsernameNotFoundException("User not found");
+            }
+            return (Trade) userRepository.findByEmail(principal.toString());
     }
 
     @Override
