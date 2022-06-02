@@ -9,6 +9,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,5 +39,10 @@ public class Trade extends User{
     private EnumCondition status;
 
     @OneToMany (mappedBy = "trade", cascade = CascadeType.ALL)
-    private List<Branch> brach;
+    private List<Branch> branchList = new ArrayList<>();
+
+    public void addBranch(Branch branch){
+        branchList.add(branch);
+    }
+
 }

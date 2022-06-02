@@ -18,9 +18,9 @@ public class Branch {//sucursal
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "branch_id")
     private Long id;
-    @NotBlank
+    //@NotBlank
     private String descriptions;
-    @NotBlank
+    //@NotBlank
     private String direccion;
     @JoinColumn(name = "trade_id")
     @ManyToOne(fetch = FetchType.LAZY)
