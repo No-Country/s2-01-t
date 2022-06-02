@@ -30,8 +30,8 @@ public class TradeServiceImpl implements TradeService{
         trade.setSoftDelete(true);
         tradeRepository.save(trade);
     }
-
-    private Trade getTrade(Long id) {
+    @Override
+    public Trade getTrade(Long id) {
         Optional<Trade> trade = tradeRepository.findById(id);
         if ((trade.isEmpty() || trade.get().isSoftDelete())){
             throw new UnsupportedOperationException(TRADE_NOT_FOUND_MESSAGE);

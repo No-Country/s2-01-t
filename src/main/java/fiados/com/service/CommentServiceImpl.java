@@ -3,7 +3,6 @@ package fiados.com.service;
 import fiados.com.models.entity.Comment;
 import fiados.com.models.mapper.CommentMapper;
 import fiados.com.models.request.CommentRequest;
-
 import fiados.com.repository.CommentRepository;
 import fiados.com.service.abstraction.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +14,10 @@ public class CommentServiceImpl implements CommentService {
     private CommentRepository commentRepository;
     @Autowired
     private CommentMapper commentMapper;
-    
+
+ 
     @Override
-    public Comment addComment(CommentRequest request) {        
+    public Comment addComment(CommentRequest request) {         
         return   commentRepository.save(commentMapper.commentToDto(request));
     }
     

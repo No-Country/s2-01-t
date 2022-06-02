@@ -4,6 +4,7 @@ package fiados.com.models.request;
 
 
 import fiados.com.models.entity.Customer;
+import fiados.com.models.entity.Trade;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -22,5 +23,6 @@ public class CommentRequest {
     @Size(min = 3, max = 100, message = "Comment must be between 3 and 100 characters long")
     private String comment;
     private Customer customer;
+    private Trade trade;
    
 }

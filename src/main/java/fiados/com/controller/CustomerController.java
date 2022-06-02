@@ -1,5 +1,6 @@
 package fiados.com.controller;
 
+import fiados.com.models.request.CommentTradeRequest;
 import fiados.com.models.request.CustomerRequest;
 import fiados.com.models.response.CustomerComment;
 import fiados.com.models.response.CustomerResponse;
@@ -33,7 +34,7 @@ public class CustomerController {
     
     @GetMapping("{id}")
     public CustomerResponse getCustomer(@PathVariable Long id){
-        return customerService.getById(id);
+        return customerService.findById(id);
     }
     
     @PutMapping("/{id}")
@@ -50,7 +51,7 @@ public class CustomerController {
     
     @PostMapping("/customer_comment")
     @ResponseStatus(HttpStatus.CREATED)
-    public CustomerComment commentCustomer(@RequestBody String comment){
+    public CustomerComment commentCustomer(@RequestBody CommentTradeRequest comment){
         return  customerService.commentUser(comment);
     }
     

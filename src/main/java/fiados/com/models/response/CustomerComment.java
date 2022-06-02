@@ -10,11 +10,15 @@ import lombok.Builder;
 @Getter @Setter
 @Builder
 public class CustomerComment {
-     private Long id_customer;
+  private Long id_customer;
   private String first_name;
   private String last_name;
   private LocalDate date;
   private LocalTime hour;
-  private String comment;    
+  //comment
+  private String comment; 
+  //trade
+  private Long id_trade;
+  private String company;
     
 }
