@@ -36,7 +36,7 @@ public class User implements UserDetails {
     protected String password;
     @NotBlank(message = "Role cannot be empty.")
     protected String role;
-   @NotBlank(message = "Dni cannot be empty.")
+    @NotBlank(message = "Dni cannot be empty.")
     protected String dni;
     protected String city;
     protected String direction;

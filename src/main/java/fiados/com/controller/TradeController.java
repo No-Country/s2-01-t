@@ -7,11 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Access;
-import javax.persistence.EntityNotFoundException;
 
 @RestController
-@RequestMapping("/api/v1/trade")
+@RequestMapping(path = "/api/v1/trade")
 @CrossOrigin(origins = "*")
 public class TradeController {
 

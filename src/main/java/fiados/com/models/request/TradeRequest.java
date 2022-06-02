@@ -5,6 +5,6 @@ import lombok.Setter;
 import lombok.Builder;
 
 @Getter @Setter @Builder
-public class TraderRequest {
+public class TradeRequest {
     
 }
