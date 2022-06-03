@@ -21,6 +21,7 @@ public class BranchMapper {
     }
     public BranchResponse branchEntity2DTO(Branch branch) {
         BranchResponse response = new BranchResponse();
+        response.setId(branch.getId());
         response.setDescriptions(branch.getDescriptions());
         response.setDireccion(branch.getDireccion());
         return response;
@@ -61,5 +62,10 @@ public class BranchMapper {
             responseList.add(response);
         }
         return responseList;
+    }
+
+    public void entityRefreshValues(Branch branch, BranchRequest request) {
+        branch.setDireccion(request.getDireccion());
+        branch.setDescriptions(request.getDescriptions());
     }
 }

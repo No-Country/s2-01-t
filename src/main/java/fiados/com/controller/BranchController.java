@@ -39,4 +39,16 @@ public class BranchController {
         return ResponseEntity.status(HttpStatus.OK).body(responses);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        branchService.deleted(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<BranchResponse> update(@PathVariable Long id, @RequestBody BranchRequest request){
+        BranchResponse response = branchService.update(id, request);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
 }

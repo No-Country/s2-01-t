@@ -5,8 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,9 +23,12 @@ public class Branch {//sucursal
     private String descriptions;
     //@NotBlank
     private String direccion;
-    @JoinColumn(name = "trade_id")
+
+    @JoinColumn(name = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Trade trade;
+
+    private boolean softDelete = Boolean.FALSE;
 
 
 

@@ -1,6 +1,5 @@
 
 package fiados.com.models.entity;
-import fiados.com.models.enums.EnumCondition;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,8 +12,6 @@ import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-
-
 
 @NoArgsConstructor
 @Getter
