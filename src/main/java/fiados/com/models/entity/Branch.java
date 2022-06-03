@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 import javax.persistence.*;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,9 +19,16 @@ public class Branch {//sucursal
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "branch_id")
     private Long id;
-
+    //@NotBlank
     private String descriptions;
+    //@NotBlank
+    private String direccion;
 
+    @JoinColumn(name = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Trade trade;
+
+    private boolean softDelete = Boolean.FALSE;
 
 
 

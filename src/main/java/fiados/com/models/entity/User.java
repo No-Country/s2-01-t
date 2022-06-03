@@ -13,8 +13,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
-
 @NoArgsConstructor
 @Getter
 @Setter
@@ -23,32 +21,28 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    private String firstName;
-
-    private String lastName;
-    @NotBlank(message = "Email cannot be empty.")
-   // @Column(unique = true, nullable = false)
-    private String email; // es el username
-
+    protected Long id;
+    @NotBlank(message = "First Name cannot be empty.")
+    protected String firstName;
+    @NotBlank(message = "Last Name cannot be empty.")
+    protected String lastName;
+    @NotBlank(message = "Email cannot be empty.") 
+    protected String email;
     @NotBlank(message = "Password cannot be empty.")
     @Size(min = 8, max = 250, message = "Password should have at least 8 characters")
-    private String password;
-
-    private String role;
-
-    private String dni;
-
-    private String city;
-
-    private String direction;
-
-    private boolean softDelete;
+    protected String password;
+    @NotBlank(message = "Role cannot be empty.")
+    protected String role;
+    @NotBlank(message = "Dni cannot be empty.")
+    protected String dni;
+    protected String city;
+    protected String adress;
+    protected String country;
+    protected boolean softDelete;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @Column(name = "role_id")
-    private List<Role> roles;
+    protected List<Role> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

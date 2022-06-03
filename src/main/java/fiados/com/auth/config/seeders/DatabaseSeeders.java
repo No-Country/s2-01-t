@@ -1,7 +1,9 @@
 package fiados.com.auth.config.seeders;
 
+import fiados.com.models.entity.Category;
 import fiados.com.models.entity.Role;
 import fiados.com.models.enums.EnumRoles;
+import fiados.com.repository.CategoryRepository;
 import fiados.com.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -20,12 +22,16 @@ public class DatabaseSeeders {
 
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
+            
 
     @EventListener
     public void seed(ContextRefreshedEvent event){
         List<Role> roleList = roleRepository.findAll();
         if(roleList.isEmpty()){
             createRoles();
+            createCategory();
         }
     }
 
@@ -42,5 +48,12 @@ public class DatabaseSeeders {
         role.setDescription(enumRoles.getName());
         role.setTimestamp(new Timestamp(System.currentTimeMillis()));
         roleRepository.save(role);
+    }
+    
+    private void createCategory(){        
+       
+        categoryRepository.save( new Category(1L,"Calzados","Tienda de calzados",false));        
+        categoryRepository.save( new Category(2L,"Comida","Tienda de Comidas",false));
+        categoryRepository.save( new Category(3L,"Chocolate","Tienda de chocolates",false));
     }
 }
