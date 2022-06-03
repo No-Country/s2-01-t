@@ -2,9 +2,9 @@ package fiados.com.models.request;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.Builder;
 
-@Getter @Setter @Builder
+
+@Getter @Setter
 public class TradeRequest {
     
 }

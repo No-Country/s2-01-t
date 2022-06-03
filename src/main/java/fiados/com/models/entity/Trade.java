@@ -37,7 +37,6 @@ public class Trade extends User{
     private Point point;
 
     private EnumCondition status;
-
     @OneToMany (mappedBy = "trade", cascade = CascadeType.ALL)
     private List<Branch> branchList = new ArrayList<>();
 

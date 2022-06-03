@@ -2,6 +2,7 @@
 package fiados.com.service;
 
 import fiados.com.models.entity.Trade;
+import fiados.com.models.mapper.TradeMapper;
 import fiados.com.models.request.TradeRequest;
 import fiados.com.models.response.TradeResponse;
 import fiados.com.repository.TradeRepository;
@@ -25,6 +26,9 @@ public class TradeServiceImpl implements TradeService{
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private TradeMapper tradeMapper;
+
     @Override
     public Trade getInfoUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -46,10 +50,7 @@ public class TradeServiceImpl implements TradeService{
     }
     @Override
     public Trade getTrade(Long id) {
-        Optional<Trade> trade = tradeRepository.findById(id);
-        if ((trade.isEmpty() || trade.get().isSoftDelete())){
-            throw new UnsupportedOperationException(TRADE_NOT_FOUND_MESSAGE);
-        }
+        Optional<Trade> trade = Optional.of(tradeRepository.findById(id).orElseThrow());
         return trade.get();
     }
 
@@ -57,10 +58,11 @@ public class TradeServiceImpl implements TradeService{
     public TradeResponse update(Long id, TradeRequest request) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    //TODO falta agregar que devuelva deuda y puntaje
     @Override
     public TradeResponse getById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Trade trade = getTrade(id);
+        return tradeMapper.entity2DTO(trade, true);
     }
 
     @Override

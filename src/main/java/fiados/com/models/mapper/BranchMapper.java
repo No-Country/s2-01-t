@@ -68,4 +68,12 @@ public class BranchMapper {
         branch.setDireccion(request.getDireccion());
         branch.setDescriptions(request.getDescriptions());
     }
+
+    public List<BranchResponse> entitySet2DtoList(List<Branch> branchList) {
+        List<BranchResponse> responses = new ArrayList<>();
+        for (Branch b: branchList){
+            responses.add(branchEntity2DTO(b));
+        }
+        return responses;
+    }
 }
