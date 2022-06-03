@@ -5,6 +5,7 @@ import fiados.com.models.entity.Customer;
 import fiados.com.models.entity.Role;
 import fiados.com.models.entity.Trade;
 import fiados.com.models.entity.User;
+import fiados.com.models.enums.EnumCondition;
 import fiados.com.models.enums.EnumRoles;
 import fiados.com.models.mapper.UserMapper;
 import fiados.com.models.request.AuthRequest;
@@ -73,7 +74,8 @@ public class UserServiceImpl implements UserDetailsService, AuthService {
            trade.setPassword(passwordEncoder.encode(request.getPassword()));
            List<Role> roles = new ArrayList<>();
            roles.add(roleService.findBy(EnumRoles.MERCHANT.getFullRoleName()));
-           trade.setRoles(roles);
+           trade.setStatus(EnumCondition.PAUSED);
+           trade.setRoles(roles);           
            Trade tradeCreate = tradeRepository.save(trade);
            UserResponse response = userMapper.dtoToEntityTrade(tradeCreate);
            response.setToken(jwt.generateTokenTrade(tradeCreate));
@@ -94,7 +96,10 @@ public class UserServiceImpl implements UserDetailsService, AuthService {
     private User getUser(String username) {
         User user = userRepository.findByEmail(username);
         if (user == null) {
-            throw new UsernameNotFoundException(USER_NOT_FOUND_MESSAGE);
+            throw new RuntimeException("The email entered is not correct.");
+        }
+        if(user.isSoftDelete()){
+            throw new RuntimeException("The user is deleted.");
         }
         return user;
     }
@@ -103,4 +108,7 @@ public class UserServiceImpl implements UserDetailsService, AuthService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return getUser(username);
     }
+    
+    
+    
 }

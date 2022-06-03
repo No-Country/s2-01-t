@@ -28,7 +28,7 @@ public class Debt {//deudas
     private LocalDateTime date;
 
     @Enumerated(value = EnumType.STRING)
-    private EnumCondition conditions;//condition es reservada agregue la "s" para que funcione
+    private EnumCondition conditions;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Customer customer;
