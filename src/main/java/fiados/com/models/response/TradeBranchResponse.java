@@ -11,8 +11,12 @@ import lombok.Setter;
 @Getter @Setter
 public class TradeBranchResponse {
 
+    private Long id;
     private String email;
     private String role;
     private String dni;
+    protected String city;
+    protected String adress;
+    protected String country;
 
 }

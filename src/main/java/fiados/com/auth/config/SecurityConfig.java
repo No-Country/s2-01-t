@@ -90,6 +90,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     //Branch
                 .antMatchers(HttpMethod.POST,"/api/v1/branch").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/branch/{id}").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/v1/branch/all").permitAll()
                 .antMatchers(publicEndpoint).permitAll()
                 .anyRequest().authenticated()
                 .and()

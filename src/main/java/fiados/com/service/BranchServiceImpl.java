@@ -12,6 +12,8 @@ import fiados.com.service.abstraction.TradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BranchServiceImpl implements BranchService {
 
@@ -19,14 +21,12 @@ public class BranchServiceImpl implements BranchService {
     private BranchMapper branchMapper;
     @Autowired
     private BranchRepository branchRepository;
-
     @Autowired
     private TradeService tradeService;
-
     @Autowired
     private TradeRepository tradeRepository;
 
-    // Crea una sucursal y guarda en trade relacion dicha sucursal
+    // Crea una sucursal y guarda en trade la relacion de dicha sucursal
     @Override
     public BranchResponse save(BranchRequest request) {
         Trade trade = tradeService.getInfoUser();
@@ -36,10 +36,17 @@ public class BranchServiceImpl implements BranchService {
         tradeRepository.save(trade); // le agrega al comerciante logueado la sucursal
         return branchMapper.branchEntity2DTO(branchSaved);
     }
-
     @Override
     public BranchResponse getById(Long id) {
         Branch branch = branchRepository.findById(id).orElseThrow();
         return branchMapper.entity2DTO(branch);
     }
+
+    @Override
+    public List<BranchResponse> getAll() {
+        List<Branch> branchList = branchRepository.findAll();
+        return branchMapper.entityList2DTO(branchList);
+    }
+
+
 }
