@@ -22,7 +22,8 @@ public class CustomerRequest {
     private String role;
     @NotBlank(message = "DNI cannot be empty.")
     private String dni;
-    private String city;
-    private String direction;
+    protected String city;
+    protected String adress;
+    protected String country;
     
 }

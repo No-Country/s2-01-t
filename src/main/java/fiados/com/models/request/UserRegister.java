@@ -31,7 +31,8 @@ public class UserRegister {
     @NotEmpty(message = "You must entnomer company name")
     @Size(min = 3, max = 100, message = "Company name must be between 3 and 100 characters long")
     private String company_name;
-    private String city;
-    private String direction;  
+    protected String city;
+    protected String adress;
+    protected String country; 
     
 }
