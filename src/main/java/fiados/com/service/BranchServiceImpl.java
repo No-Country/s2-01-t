@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BranchServiceImpl implements BranchService {
@@ -46,6 +47,29 @@ public class BranchServiceImpl implements BranchService {
     public List<BranchResponse> getAll() {
         List<Branch> branchList = branchRepository.findAll();
         return branchMapper.entityList2DTO(branchList);
+    }
+
+    //TODO Revisar no funciona cuando agrego la consulta sql en la enidad
+    @Override
+    public void deleted(Long id) {
+        Branch branch = getBranch(id);
+        branch.setSoftDelete(true);
+        branchRepository.save(branch);
+    }
+    @Override
+    public Branch getBranch(Long id) {
+        Optional<Branch> branch = branchRepository.findById(id);
+        if(branch.isEmpty() || branch.get().isSoftDelete()){
+            throw new RuntimeException("Branch not found");
+        }
+        return branch.get();
+    }
+    @Override
+    public BranchResponse update(Long id, BranchRequest request) {
+        Optional<Branch> branch = Optional.of(branchRepository.findById(id).orElseThrow());
+        branchMapper.entityRefreshValues(branch.get(), request);
+        Branch branchSaved = branchRepository.save(branch.get());
+        return branchMapper.entity2DTO(branchSaved);
     }
 
 
