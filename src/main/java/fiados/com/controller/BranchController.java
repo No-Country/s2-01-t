@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping(path ="/api/v1/branch")
@@ -30,6 +31,12 @@ public class BranchController {
         BranchResponse response = branchService.getById(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
 
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<BranchResponse>> getAll(){
+        List<BranchResponse> responses = branchService.getAll();
+        return ResponseEntity.status(HttpStatus.OK).body(responses);
     }
 
 }

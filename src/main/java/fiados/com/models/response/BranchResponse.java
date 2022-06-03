@@ -13,6 +13,7 @@ import lombok.Setter;
 @Getter
 public class BranchResponse {
 
+    private Long id;
 
     private String descriptions;
 
