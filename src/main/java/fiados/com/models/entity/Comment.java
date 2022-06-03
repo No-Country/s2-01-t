@@ -35,6 +35,9 @@ public class Comment {//comentarios
     
     @ManyToOne(fetch = FetchType.LAZY)
     private Customer customer;
+   
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Trade trade;
     
     
 }

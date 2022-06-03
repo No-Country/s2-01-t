@@ -14,6 +14,7 @@ public class CommentMapper {
                 .comment(request.getComment())
                 .customer(request.getCustomer())
                 .date(LocalDateTime.now() )
+                .trade(request.getTrade())
                 .build();
     }
 }

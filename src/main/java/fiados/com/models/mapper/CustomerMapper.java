@@ -42,11 +42,12 @@ public class CustomerMapper {
         return CustomerComment.builder()
                 .id_customer(customer.getId())
                 .first_name(customer.getFirstName())
-                .last_name(customer.getLastName())  
-                //.date(comment.getDate())
+                .last_name(customer.getLastName())               
                 .date(comment.getDate().toLocalDate())
                 .hour(comment.getDate().toLocalTime())
                 .comment(comment.getComment())
+                .id_trade(comment.getTrade().getId())
+                .company(comment.getTrade().getCompany_name())                
                 .build();
     }
 }
