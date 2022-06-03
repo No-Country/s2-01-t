@@ -47,6 +47,7 @@ public class UserMapper {
         user.setCity(request.getCity());
         user.setDirection(request.getDirection());
         user.setStatus(EnumCondition.PAUSED);
+        user.setCompany_name(request.getCompany_name());
         return user;
     }
 }

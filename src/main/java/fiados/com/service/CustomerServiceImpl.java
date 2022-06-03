@@ -2,7 +2,6 @@ package fiados.com.service;
 
 import fiados.com.models.entity.Comment;
 import fiados.com.models.entity.Customer;
-import fiados.com.models.entity.Trade;
 import fiados.com.models.mapper.CustomerMapper;
 import fiados.com.models.request.CommentRequest;
 import fiados.com.models.request.CommentTradeRequest;

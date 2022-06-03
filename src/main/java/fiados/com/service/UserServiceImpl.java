@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserDetailsService, AuthService {
            List<Role> roles = new ArrayList<>();
            roles.add(roleService.findBy(EnumRoles.MERCHANT.getFullRoleName()));
            trade.setStatus(EnumCondition.PAUSED);
-           trade.setRoles(roles);
+           trade.setRoles(roles);           
            Trade tradeCreate = tradeRepository.save(trade);
            UserResponse response = userMapper.dtoToEntityTrade(tradeCreate);
            response.setToken(jwt.generateTokenTrade(tradeCreate));
