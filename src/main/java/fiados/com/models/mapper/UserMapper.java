@@ -19,7 +19,8 @@ public class UserMapper {
         user.setLastName(request.getLastName());
         user.setRole(request.getRole());
         user.setCity(request.getCity());
-        user.setDirection(request.getDirection());
+        user.setCountry(request.getCountry());
+        user.setAdress(request.getAdress());
         return user;
     }
 
@@ -45,7 +46,8 @@ public class UserMapper {
         user.setLastName(request.getLastName());
         user.setRole(request.getRole());
         user.setCity(request.getCity());
-        user.setDirection(request.getDirection());
+        user.setAdress(request.getAdress());
+        user.setCountry(request.getCountry());
         user.setStatus(EnumCondition.PAUSED);
         user.setCompany_name(request.getCompany_name());
         return user;

@@ -5,7 +5,6 @@ import fiados.com.models.entity.Customer;
 import fiados.com.models.request.CustomerRequest;
 import fiados.com.models.response.CustomerComment;
 import fiados.com.models.response.CustomerResponse;
-import java.time.LocalDate;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -21,8 +20,9 @@ public class CustomerMapper {
                 .dni(request.getDni())
                 .email(request.getEmail())
                 .role(request.getRole())
-                .direction(request.getDirection())
+                .adress(request.getAdress())
                 .city(request.getCity())
+                .country(request.getCountry())
                 .build();
     }
 
@@ -33,8 +33,8 @@ public class CustomerMapper {
         user.setLastName(request.getLastName());
         user.setRole(request.getRole());
         user.setCity(request.getCity());
-        user.setDirection(request.getDirection());
-        user.setCity(request.getCity());
+        user.setAdress(request.getAdress());
+        user.setCountry(request.getCountry());
         return user;
     }
     

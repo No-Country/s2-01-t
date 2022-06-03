@@ -13,6 +13,7 @@ public class CustomerResponse {
     private String email;
     private String role;
     private String dni;
-    private String city;
-    private String direction;
+    protected String city;
+    protected String adress;
+    protected String country;
 }

@@ -39,7 +39,8 @@ public class User implements UserDetails {
     @NotBlank(message = "Dni cannot be empty.")
     protected String dni;
     protected String city;
-    protected String direction;
+    protected String adress;
+    protected String country;
     protected boolean softDelete;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
