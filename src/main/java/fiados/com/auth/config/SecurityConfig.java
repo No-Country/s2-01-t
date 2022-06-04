@@ -88,6 +88,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE,"/api/v1/trade/{id}").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/trade/me").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/trade/{id}").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/v1/trade/all").permitAll()
                     //Branch
                 .antMatchers(HttpMethod.POST,"/api/v1/branch").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/branch/{id}").permitAll()

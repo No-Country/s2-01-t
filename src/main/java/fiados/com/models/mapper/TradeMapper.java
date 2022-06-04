@@ -6,6 +6,7 @@ import fiados.com.models.response.TradeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -30,5 +31,13 @@ public class TradeMapper {
             response.setBranchResponseList(branchResponseList);
         }
         return response;
+    }
+
+    public List<TradeResponse> entitySet2DTOList(List<Trade> tradeList) {
+        List<TradeResponse> responses = new ArrayList<>();
+        for (Trade t: tradeList){
+            responses.add(entity2DTO(t, true));
+        }
+        return responses;
     }
 }

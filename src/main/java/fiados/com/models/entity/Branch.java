@@ -30,6 +30,9 @@ public class Branch {//sucursal
 
     private boolean softDelete = Boolean.FALSE;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private Category category;
 
 
 }

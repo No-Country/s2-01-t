@@ -1,5 +1,6 @@
 package fiados.com.models.response;
 
+import fiados.com.models.entity.Category;
 import fiados.com.models.entity.Trade;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,4 +21,6 @@ public class BranchResponse {
     private String direccion;
 
     private TradeBranchResponse trade;
+
+
 }

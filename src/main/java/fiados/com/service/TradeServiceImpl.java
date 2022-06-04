@@ -41,7 +41,6 @@ public class TradeServiceImpl implements TradeService{
             }
             return (Trade) userRepository.findByEmail(principal.toString());
     }
-
     @Override
     public void delete(Long id) {
         Trade trade = getTrade(id);
@@ -53,22 +52,27 @@ public class TradeServiceImpl implements TradeService{
         Optional<Trade> trade = Optional.of(tradeRepository.findById(id).orElseThrow());
         return trade.get();
     }
+    //TODO falta agregar que devuelva deuda y puntaje
+    //Devuelve todos los comerciante y sus sucursales
+    @Override
+    public List<TradeResponse> getAll() {
+        List<Trade> tradeList = tradeRepository.findAll();
+        return tradeMapper.entitySet2DTOList(tradeList);
+    }
 
     @Override
     public TradeResponse update(Long id, TradeRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     //TODO falta agregar que devuelva deuda y puntaje
+    //Devuelve al comerciante y sus sucursales
     @Override
     public TradeResponse getById(Long id) {
         Trade trade = getTrade(id);
         return tradeMapper.entity2DTO(trade, true);
     }
 
-    @Override
-    public List<TradeResponse> getAllUser() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
 
 
 
