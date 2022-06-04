@@ -12,8 +12,6 @@ public interface TradeService {
     public void delete(Long id);   
     public TradeResponse update(Long id, TradeRequest request);
     public TradeResponse getById(Long id);
-    public List<TradeResponse> getAllUser();
     public Trade getTrade(Long id);
-
-
+    List<TradeResponse> getAll();
 }

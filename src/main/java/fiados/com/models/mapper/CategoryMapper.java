@@ -28,5 +28,6 @@ public class CategoryMapper {
         entityById.setDescription(request.getDescription());
         return entityById;
     }
- 
+
+
 }

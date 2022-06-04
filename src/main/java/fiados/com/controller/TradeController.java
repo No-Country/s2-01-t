@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping(path = "/api/v1/trade")
@@ -30,6 +32,12 @@ public class TradeController {
     public ResponseEntity<TradeResponse> getById(@PathVariable Long id){
         TradeResponse response = tradeService.getById(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<TradeResponse>> getAll(){
+        List<TradeResponse> responseList = tradeService.getAll();
+        return ResponseEntity.status(HttpStatus.OK).body(responseList);
     }
 
 }
