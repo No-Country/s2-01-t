@@ -23,7 +23,8 @@ public class TradeResponse {
     private String firstName;
     private String lastName;
     private String company_name;
-   private List<BranchResponse> branchResponseList;
+    private List<BranchResponse> branchResponseList;
+    private List<PointResponse> pointResponses;
 
     
 }

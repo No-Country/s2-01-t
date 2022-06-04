@@ -2,6 +2,7 @@ package fiados.com.models.mapper;
 
 import fiados.com.models.entity.Trade;
 import fiados.com.models.response.BranchResponse;
+import fiados.com.models.response.PointResponse;
 import fiados.com.models.response.TradeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,8 +14,10 @@ import java.util.List;
 public class TradeMapper {
 
     @Autowired
+    private PointMapper pointMapper;
+    @Autowired
     private BranchMapper branchMapper;
-    public TradeResponse entity2DTO(Trade trade, boolean loadBranch) {
+    public TradeResponse entity2DTO(Trade trade, boolean loadBranch, boolean loadPoint) {
         TradeResponse response = new TradeResponse();
         response.setAdress(trade.getAdress());
         response.setCity(trade.getCity());
@@ -30,13 +33,17 @@ public class TradeMapper {
             List<BranchResponse> branchResponseList = branchMapper.entitySet2DtoList(trade.getBranchList());
             response.setBranchResponseList(branchResponseList);
         }
+        if (loadPoint){
+           List<PointResponse> pointResponses = pointMapper.entitySet2DtoList(trade.getPoints());
+           response.setPointResponses(pointResponses);
+        }
         return response;
     }
 
     public List<TradeResponse> entitySet2DTOList(List<Trade> tradeList) {
         List<TradeResponse> responses = new ArrayList<>();
         for (Trade t: tradeList){
-            responses.add(entity2DTO(t, true));
+            responses.add(entity2DTO(t, true,true));
         }
         return responses;
     }

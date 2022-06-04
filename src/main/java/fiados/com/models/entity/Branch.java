@@ -24,7 +24,7 @@ public class Branch {//sucursal
     //@NotBlank
     private String direccion;
 
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "trade_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Trade trade;
 

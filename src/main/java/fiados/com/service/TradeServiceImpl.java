@@ -52,8 +52,8 @@ public class TradeServiceImpl implements TradeService{
         Optional<Trade> trade = Optional.of(tradeRepository.findById(id).orElseThrow());
         return trade.get();
     }
-    //TODO falta agregar que devuelva deuda y puntaje
-    //Devuelve todos los comerciante y sus sucursales
+    //TODO falta agregar que devuelva deuda
+    //Devuelve todos los comerciante y sus sucursales e puntajes
     @Override
     public List<TradeResponse> getAll() {
         List<Trade> tradeList = tradeRepository.findAll();
@@ -64,12 +64,12 @@ public class TradeServiceImpl implements TradeService{
     public TradeResponse update(Long id, TradeRequest request) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    //TODO falta agregar que devuelva deuda y puntaje
-    //Devuelve al comerciante y sus sucursales
+    //TODO falta agregar que devuelva deuda
+    //Devuelve al comerciante y sus sucursales, y sus puntuaciones a distintos clientes
     @Override
     public TradeResponse getById(Long id) {
         Trade trade = getTrade(id);
-        return tradeMapper.entity2DTO(trade, true);
+        return tradeMapper.entity2DTO(trade, true, true);
     }
 
 
