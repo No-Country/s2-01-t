@@ -44,6 +44,7 @@ public class User implements UserDetails {
     @Column(name = "role_id")
     protected List<Role> roles;
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.getRoles().stream().map(
