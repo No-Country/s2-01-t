@@ -97,6 +97,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT,"/api/v1/branch/{id}").permitAll()
                     //Point
                 .antMatchers(HttpMethod.POST,"api/v1/point").hasAnyAuthority(EnumRoles.MERCHANT.getFullRoleName())
+                .antMatchers(HttpMethod.POST,"api/v1/point/{id}").permitAll()
 
                 .antMatchers(publicEndpoint).permitAll()
                 .anyRequest()

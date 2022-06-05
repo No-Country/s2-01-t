@@ -50,7 +50,10 @@ public class TradeServiceImpl implements TradeService{
     }
     @Override
     public Trade getTrade(Long id) {
-        Optional<Trade> trade = Optional.of(tradeRepository.findById(id).orElseThrow());
+        Optional<Trade> trade = tradeRepository.findById(id);
+        if(trade.isEmpty() || trade.get().isSoftDelete()){
+            throw new RuntimeException("User not found.");
+        }
         return trade.get();
     }
     //TODO falta agregar que devuelva deuda

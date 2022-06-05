@@ -16,8 +16,8 @@ import java.util.Set;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-@SQLDelete(sql = "UPDATE trade SET deleted = true WHERE id=?")
-@Where(clause = "deleted = false")
+@SQLDelete(sql = "UPDATE trade SET soft_delete=true id=?")
+@Where(clause = "soft_delete=false")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter

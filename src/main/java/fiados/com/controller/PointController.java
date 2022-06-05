@@ -23,4 +23,10 @@ public class PointController {
         PointResponse response = pointService.addPointTrade(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        pointService.deleted(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
