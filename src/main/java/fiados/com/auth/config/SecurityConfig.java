@@ -2,6 +2,7 @@ package fiados.com.auth.config;
 
 
 import fiados.com.auth.filter.JwtRequestFilters;
+import fiados.com.models.enums.EnumRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
@@ -60,12 +61,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf()
-                .disable()
+        http.csrf().disable()
                 .cors()
                 .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/auth/register").permitAll()
@@ -89,6 +88,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/api/v1/trade/me").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/trade/{id}").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/trade/all").permitAll()
+                .antMatchers(HttpMethod.PUT,"/api/v1/trade/{id}").permitAll()
                     //Branch
                 .antMatchers(HttpMethod.POST,"/api/v1/branch").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/branch/{id}").permitAll()
@@ -96,10 +96,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE,"/api/v1/branch/{id}").permitAll()
                 .antMatchers(HttpMethod.PUT,"/api/v1/branch/{id}").permitAll()
                     //Point
-                .antMatchers(HttpMethod.POST,"api/v1/point").permitAll()
+                .antMatchers(HttpMethod.POST,"api/v1/point").hasAnyAuthority(EnumRoles.MERCHANT.getFullRoleName())
 
                 .antMatchers(publicEndpoint).permitAll()
-                .anyRequest().authenticated()
+                .anyRequest()
+                .authenticated()
                 .and()
                 .addFilterBefore(jwtRequestFilters, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling()
