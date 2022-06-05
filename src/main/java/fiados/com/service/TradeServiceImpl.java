@@ -3,6 +3,7 @@ package fiados.com.service;
 
 import fiados.com.models.entity.Trade;
 import fiados.com.models.mapper.TradeMapper;
+import fiados.com.models.request.TradeFilterRequest;
 import fiados.com.models.request.TradeRequest;
 import fiados.com.models.response.TradeResponse;
 import fiados.com.models.response.TradeUpdateResponse;
@@ -14,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,6 +73,16 @@ public class TradeServiceImpl implements TradeService{
         Trade tradeUpdate = tradeRepository.save(trade);
         return tradeMapper.tradeEntity2DTO(tradeUpdate);
 
+    }
+    @Override
+    public List<TradeResponse> findByFirstNameAndCity(String firstName, String city) {
+        TradeFilterRequest tradeFilterRequest = new TradeFilterRequest();
+        List<TradeResponse> responses = new ArrayList<>();
+        List<Trade> trades = tradeRepository.findByFirstNameAndCity(firstName,city);
+        trades.forEach(trade -> {
+            responses.add(tradeMapper.entity2DTO(trade,true,true));
+        });
+    return responses;
     }
 
     //TODO falta agregar que devuelva deuda

@@ -12,6 +12,8 @@ import lombok.Setter;
 @Setter
 public class PointResponse {
 
+    private Long id;
+
     private Long idCostumer;
 
     private Long idTrade;

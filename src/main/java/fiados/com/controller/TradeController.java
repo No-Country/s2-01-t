@@ -48,5 +48,15 @@ public class TradeController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    //Busca por nombre y ciudad
+    @GetMapping("/filter")
+    public ResponseEntity<List<TradeResponse>> findByFirstNameAndCity(
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String city
+    ){
+        List<TradeResponse> tradeResponses = tradeService.findByFirstNameAndCity(firstName, city);
+        return ResponseEntity.ok().body(tradeResponses);
+    }
+
 
 }
