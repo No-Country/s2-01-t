@@ -35,7 +35,6 @@ public class TradeController {
         TradeResponse response = tradeService.getById(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
-
     @GetMapping("/all")
     public ResponseEntity<List<TradeResponse>> getAll(){
         List<TradeResponse> responseList = tradeService.getAll();
