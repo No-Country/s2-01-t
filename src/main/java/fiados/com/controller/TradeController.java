@@ -47,4 +47,6 @@ public class TradeController {
         TradeUpdateResponse response = tradeService.update(id, request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+
+
 }
