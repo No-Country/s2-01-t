@@ -58,7 +58,6 @@ public class BranchServiceImpl implements BranchService {
         return branchMapper.entityList2DTO(branchList);
     }
 
-    //TODO Revisar no funciona cuando agrego la consulta sql en la entidad
     @Override
     public void deleted(Long id) {
         Branch branch = getBranch(id);

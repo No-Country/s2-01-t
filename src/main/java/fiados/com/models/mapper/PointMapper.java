@@ -17,6 +17,7 @@ public class PointMapper {
     }
     public PointResponse DTO2Entity(Point point) {
         PointResponse response = new PointResponse();
+        response.setId(point.getId());
         response.setIdCostumer(point.getIdCostumer());
         response.setIdTrade(point.getIdTrade());
         response.setPoint_client(point.getPoint());

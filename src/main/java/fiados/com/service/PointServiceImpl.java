@@ -38,7 +38,7 @@ public class PointServiceImpl implements PointService {
         Point point = pointMapper.entity2DTO(request);
         point.setIdTrade(trade.getId());
         point.setIdCostumer(customer.getId());
-        trade.addPoint(point);//Guardo el puntaje en la lista de comerciante
+        trade.addPoint(point);//Guardo el puntaje en la lista del comerciante
         pointRepository.save(point);
         tradeRepository.save(trade);
         return pointMapper.DTO2Entity(point);

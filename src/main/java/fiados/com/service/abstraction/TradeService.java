@@ -17,4 +17,6 @@ public interface TradeService {
     public Trade getTrade(Long id);
     List<TradeResponse> getAll();
     TradeUpdateResponse update(Long id, TradeRequest request);
+
+    List<TradeResponse> findByFirstNameAndCity(String firstName, String city);
 }
