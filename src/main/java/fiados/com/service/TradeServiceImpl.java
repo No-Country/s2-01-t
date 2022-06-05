@@ -5,6 +5,7 @@ import fiados.com.models.entity.Trade;
 import fiados.com.models.mapper.TradeMapper;
 import fiados.com.models.request.TradeRequest;
 import fiados.com.models.response.TradeResponse;
+import fiados.com.models.response.TradeUpdateResponse;
 import fiados.com.repository.TradeRepository;
 import fiados.com.repository.UserRepository;
 import fiados.com.service.abstraction.TradeService;
@@ -61,9 +62,14 @@ public class TradeServiceImpl implements TradeService{
     }
 
     @Override
-    public TradeResponse update(Long id, TradeRequest request) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public TradeUpdateResponse update(Long id, TradeRequest request) {
+        Trade trade = tradeRepository.findById(id).orElseThrow();
+        tradeMapper.tradeRefreshValues(trade, request);
+        Trade tradeUpdate = tradeRepository.save(trade);
+        return tradeMapper.tradeEntity2DTO(tradeUpdate);
+
     }
+
     //TODO falta agregar que devuelva deuda
     //Devuelve al comerciante y sus sucursales, y sus puntuaciones a distintos clientes
     @Override

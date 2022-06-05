@@ -1,7 +1,9 @@
 package fiados.com.controller;
 
 import fiados.com.models.entity.User;
+import fiados.com.models.request.TradeRequest;
 import fiados.com.models.response.TradeResponse;
+import fiados.com.models.response.TradeUpdateResponse;
 import fiados.com.service.abstraction.TradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,4 +42,9 @@ public class TradeController {
         return ResponseEntity.status(HttpStatus.OK).body(responseList);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<TradeUpdateResponse> update(@PathVariable Long id, @RequestBody TradeRequest request){
+        TradeUpdateResponse response = tradeService.update(id, request);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
 }
