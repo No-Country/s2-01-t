@@ -1,7 +1,5 @@
 package fiados.com.models.response;
 
-import fiados.com.models.entity.Category;
-import fiados.com.models.entity.Trade;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,17 +8,17 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
 @Getter
-public class BranchResponse {
+@Setter
+public class PointResponse {
 
     private Long id;
 
-    private String descriptions;
+    private Long idCostumer;
 
-    private String direccion;
+    private Long idTrade;
 
-    private TradeBranchResponse trade;
+    private int point_client;
 
 
 }
