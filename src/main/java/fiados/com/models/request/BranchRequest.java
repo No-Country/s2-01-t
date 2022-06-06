@@ -18,5 +18,7 @@ public class BranchRequest {
 
     private String direccion;
 
-    private Trade trade;
+    //private Trade trade;
+
+    private Long idCategory;
 }

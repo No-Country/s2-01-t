@@ -38,11 +38,13 @@ public class User implements UserDetails {
     protected String city;
     protected String adress;
     protected String country;
-    protected boolean softDelete;
+    @Column(name = "soft_delete")
+    protected boolean softDelete=Boolean.FALSE;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @Column(name = "role_id")
     protected List<Role> roles;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

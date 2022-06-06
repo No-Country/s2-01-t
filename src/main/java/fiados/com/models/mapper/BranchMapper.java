@@ -71,9 +71,9 @@ public class BranchMapper {
 
     public List<BranchResponse> entitySet2DtoList(List<Branch> branchList) {
         List<BranchResponse> responses = new ArrayList<>();
-        for (Branch b: branchList){
-            responses.add(branchEntity2DTO(b));
-        }
+        branchList.forEach(branch -> {
+            responses.add(branchEntity2DTO(branch));
+        });
         return responses;
     }
 }

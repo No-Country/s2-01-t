@@ -12,5 +12,6 @@ public interface CategoryService {
     public List<CategoryResponse> findAll();
     public ResponseEntity<?> update(Long id, CategoryRequest category);
     public CategoryResponse findById(Long id);
+    Category findByIdCategory(Long id);
     void delete(Long id);
 }
