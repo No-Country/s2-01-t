@@ -44,9 +44,9 @@ public class TradeMapper {
 
     public List<TradeResponse> entitySet2DTOList(List<Trade> tradeList) {
         List<TradeResponse> responses = new ArrayList<>();
-        for (Trade t: tradeList){
-            responses.add(entity2DTO(t, true,true));
-        }
+        tradeList.forEach(trade -> {
+            responses.add(entity2DTO(trade,true,true));
+        });
         return responses;
     }
 
