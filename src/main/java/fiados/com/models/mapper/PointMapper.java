@@ -26,9 +26,9 @@ public class PointMapper {
 
     public List<PointResponse> entitySet2DtoList(List<Point> points) {
         List<PointResponse> responses = new ArrayList<>();
-        for (Point p: points){
-            responses.add(DTO2Entity(p));
-        }
+        points.forEach(point -> {
+            responses.add(DTO2Entity(point));
+        });
         return responses;
     }
 }
