@@ -20,10 +20,13 @@ import fiados.com.service.abstraction.DebtsService;
 import fiados.com.service.abstraction.TradeService;
 import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 
+import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
+import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -44,6 +47,9 @@ public class TradeServiceImpl implements TradeService {
     private DebtsService debtService;
     @Autowired
     private DebtRepository debtRepository;
+    @Autowired
+    private CustomerService customerService;
+
     @Autowired
     private CustomerService customerService;
 

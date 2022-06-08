@@ -20,6 +20,7 @@ import fiados.com.service.abstraction.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -91,6 +92,21 @@ public class UserServiceImpl implements UserDetailsService, AuthService {
         User user = getUser(request.getEmail());
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()));
         return new AuthResponse(jwt.generateToken(user), user.getEmail(), user.getRole());
+    }
+
+    @Override
+    public User getInfoUser() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        try {
+            if(principal instanceof User) {
+                String userName = ((User) principal).getUsername();
+            }
+
+        }catch (Exception e){
+            throw new UsernameNotFoundException("User not found");
+        }
+
+        return userRepository.findByEmail(principal.toString());
     }
 
     private User getUser(String username) {
