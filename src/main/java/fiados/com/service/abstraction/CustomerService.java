@@ -19,5 +19,6 @@ public interface CustomerService{
     public CustomerComment commentUser(CommentTradeRequest comment);
     //debt
     public List<Debt> customerTotalAmount();
+    public void customerDebt(Debt debt, Customer custormer);
     
 }
