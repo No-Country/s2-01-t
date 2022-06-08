@@ -42,13 +42,12 @@ public class Trade extends User{
             joinColumns = @JoinColumn(name = "trade_id"),
             inverseJoinColumns = @JoinColumn(name = "point_id"))
     protected List<Point> points = new ArrayList<>();
-
     public void addPoint(Point point){
         points.add(point);
     }
-
     public void addBranch(Branch branch){
         branchList.add(branch);
     }
+    public void addDebt(Debt debt){debts.add(debt);}
 
 }

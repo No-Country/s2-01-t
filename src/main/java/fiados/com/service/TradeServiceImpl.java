@@ -18,18 +18,15 @@ import fiados.com.repository.UserRepository;
 import fiados.com.service.abstraction.CustomerService;
 import fiados.com.service.abstraction.DebtsService;
 import fiados.com.service.abstraction.TradeService;
-import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
-import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class TradeServiceImpl implements TradeService {
@@ -45,8 +42,6 @@ public class TradeServiceImpl implements TradeService {
     private TradeMapper tradeMapper;
     @Autowired
     private DebtsService debtService;
-    @Autowired
-    private DebtRepository debtRepository;
     @Autowired
     private CustomerService customerService;
 
@@ -103,17 +98,16 @@ public class TradeServiceImpl implements TradeService {
         List<TradeResponse> responses = new ArrayList<>();
         List<Trade> trades = tradeRepository.findByFirstNameAndCity(firstName, city);
         trades.forEach(trade -> {
-            responses.add(tradeMapper.entity2DTO(trade, true, true));
+            responses.add(tradeMapper.entity2DTO(trade, true, true, true));
         });
         return responses;
     }
 
-    //TODO falta agregar que devuelva deuda
     //Devuelve al comerciante y sus sucursales, y sus puntuaciones a distintos clientes
     @Override
     public TradeResponse getById(Long id) {
         Trade trade = getTrade(id);
-        return tradeMapper.entity2DTO(trade, true, true);
+        return tradeMapper.entity2DTO(trade, true, true, true);
     }
    @Override
     public DebtCustomerResponse tradeDebtCustomer(TradeDebtRequest request) {
@@ -125,19 +119,14 @@ public class TradeServiceImpl implements TradeService {
                 .conditions(EnumCondition.ACTIVATED)
                 .trade(trade)
                 .build());
-
-        return DebtCustomerResponse.builder()
-                .id(debt.getId())
-                .trade_id(trade.getId())
-                .company(trade.getCompany_name())
-                .date(debt.getDate().toLocalDate())
-                .hour(debt.getDate().toLocalTime())
-                .totalAmount(debt.getTotalAmount())
-                .conditions(debt.getConditions())
-                .customer_id(debt.getCustomer().getId())
-                .first_name(debt.getCustomer().getFirstName())
-                .last_name(debt.getCustomer().getLastName())
-                .build();
+        trade.addDebt(debt);
+        try{
+            tradeRepository.save(trade);
+            customerService.customerDebt(debt, customer);
+        }catch(Exception e){
+            throw new RuntimeException("error saving merchant data.");
+        }        
+        return tradeMapper.tradeToDebt(trade, customer, debt);
     }
 
     

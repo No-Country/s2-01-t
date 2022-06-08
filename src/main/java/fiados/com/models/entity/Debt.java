@@ -40,5 +40,6 @@ public class Debt {//deudas
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Trade trade;
-
+   @Column(name = "soft_delete")
+    private boolean softDelete = Boolean.FALSE;
 }
