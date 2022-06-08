@@ -16,7 +16,9 @@ import fiados.com.service.abstraction.CustomerService;
 import fiados.com.service.abstraction.DebtsService;
 import fiados.com.service.abstraction.TradeService;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -118,5 +120,17 @@ public class CustomerServiceImpl implements CustomerService {
          List<Debt> listDebt=new ArrayList<>();
          listDebt=debtService.findByCustomer(customer);
          return listDebt;
+    }
+
+    @Override
+    public void customerDebt(Debt debt, Customer customer) {
+        Set<Debt> debts=new HashSet(); 
+        debts.add(debt);
+        customer.setDebts(debts);
+         try{
+            customerRepository.save(customer);
+        }catch(Exception e){
+            throw new RuntimeException("error saving merchant data.");
+        }
     }
 }

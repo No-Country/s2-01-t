@@ -44,8 +44,7 @@ public class DebtsServiceImpl implements DebtsService {
     }
 
     @Override
-    public List<DebtResponse> findAllDebt() {
-        System.out.println("ENTRA ACA");
+    public List<DebtResponse> findAllDebt() {      
         return debtRepository.findAll().stream()
                 .map( i -> debtMapper.entityToDTO(i))
                 .collect(Collectors.toList());  

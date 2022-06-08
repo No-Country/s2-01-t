@@ -1,8 +1,11 @@
 package fiados.com.models.mapper;
 
+import fiados.com.models.entity.Customer;
+import fiados.com.models.entity.Debt;
 import fiados.com.models.entity.Trade;
 import fiados.com.models.request.TradeRequest;
 import fiados.com.models.response.BranchResponse;
+import fiados.com.models.response.DebtCustomerResponse;
 import fiados.com.models.response.PointResponse;
 import fiados.com.models.response.TradeResponse;
 import fiados.com.models.response.TradeUpdateResponse;
@@ -72,6 +75,21 @@ public class TradeMapper {
         response.setLastName(trade.getLastName());
         response.setCompany_name(trade.getCompany_name());
         return response;
+    }
+    
+    public DebtCustomerResponse tradeToDebt(Trade trade, Customer customer, Debt debt){
+      return  DebtCustomerResponse.builder()
+                .id(debt.getId())
+                .trade_id(trade.getId())
+                .company(trade.getCompany_name())
+                .date(debt.getDate().toLocalDate())
+                .hour(debt.getDate().toLocalTime())
+                .totalAmount(debt.getTotalAmount())
+                .conditions(debt.getConditions())
+                .customer_id(debt.getCustomer().getId())
+                .first_name(debt.getCustomer().getFirstName())
+                .last_name(debt.getCustomer().getLastName())
+                .build();
     }
     
 }
