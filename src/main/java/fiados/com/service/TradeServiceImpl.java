@@ -128,7 +128,7 @@ public class TradeServiceImpl implements TradeService {
                 .company(trade.getCompany_name())
                 .date(debt.getDate().toLocalDate())
                 .hour(debt.getDate().toLocalTime())
-                .total(debt.getTotalAmount())
+                .totalAmount(debt.getTotalAmount())
                 .conditions(debt.getConditions())
                 .customer_id(debt.getCustomer().getId())
                 .first_name(debt.getCustomer().getFirstName())
@@ -136,4 +136,5 @@ public class TradeServiceImpl implements TradeService {
                 .build();
     }
 
+    
 }

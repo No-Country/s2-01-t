@@ -23,9 +23,8 @@ import lombok.Builder;
 @Builder
 public class Debt {//deudas
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "debt_id")
+    @Id     
+    @GeneratedValue(strategy = GenerationType.AUTO) 
     private Long id;
      
     private double totalAmount;//cantidad total

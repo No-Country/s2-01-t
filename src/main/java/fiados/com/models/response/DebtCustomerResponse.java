@@ -12,7 +12,7 @@ public class DebtCustomerResponse {
     private Long id;
     private LocalDate date;
     private LocalTime hour;
-    private double total;
+    private double totalAmount;
     private EnumCondition conditions;
     private Long customer_id;
     private String first_name;

@@ -73,4 +73,5 @@ public class TradeMapper {
         response.setCompany_name(trade.getCompany_name());
         return response;
     }
+    
 }

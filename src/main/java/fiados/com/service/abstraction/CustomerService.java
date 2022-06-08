@@ -1,6 +1,7 @@
 package fiados.com.service.abstraction;
 
 import fiados.com.models.entity.Customer;
+import fiados.com.models.entity.Debt;
 import fiados.com.models.request.CommentTradeRequest;
 import fiados.com.models.request.CustomerRequest;
 import fiados.com.models.response.CustomerComment;
@@ -16,5 +17,7 @@ public interface CustomerService{
     public List<CustomerResponse> getAllUser();
     //comments
     public CustomerComment commentUser(CommentTradeRequest comment);
+    //debt
+    public List<Debt> customerTotalAmount();
     
 }
