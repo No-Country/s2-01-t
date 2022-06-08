@@ -1,5 +1,6 @@
 package fiados.com.controller;
 
+import fiados.com.models.entity.Trade;
 import fiados.com.models.entity.User;
 import fiados.com.models.request.TradeRequest;
 import fiados.com.models.response.TradeResponse;
@@ -27,7 +28,7 @@ public class TradeController {
 
     }
     @GetMapping("/me")
-    public ResponseEntity<User> getInfoUser(){
+    public ResponseEntity<Trade> getInfoUser(){
         return new ResponseEntity<>(tradeService.getInfoUser(), HttpStatus.OK);
     }
     @GetMapping("/{id}")
