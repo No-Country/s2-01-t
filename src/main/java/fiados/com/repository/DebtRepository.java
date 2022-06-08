@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DebtRepository extends JpaRepository<Debt, Long> {
+//    Debt findByCustomer();
+//    Debt findByTrade();
 }
