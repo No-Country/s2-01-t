@@ -7,12 +7,10 @@ import fiados.com.models.enums.EnumCondition;
 import fiados.com.models.mapper.TradeMapper;
 import fiados.com.models.request.DebtRequest;
 import fiados.com.models.request.TradeDebtRequest;
-import fiados.com.models.request.TradeFilterRequest;
 import fiados.com.models.request.TradeRequest;
 import fiados.com.models.response.DebtCustomerResponse;
 import fiados.com.models.response.TradeResponse;
 import fiados.com.models.response.TradeUpdateResponse;
-import fiados.com.repository.DebtRepository;
 import fiados.com.repository.TradeRepository;
 import fiados.com.repository.UserRepository;
 import fiados.com.service.abstraction.CustomerService;
@@ -23,10 +21,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
+
 
 @Service
 public class TradeServiceImpl implements TradeService {
@@ -91,10 +88,8 @@ public class TradeServiceImpl implements TradeService {
         return tradeMapper.tradeEntity2DTO(tradeUpdate);
 
     }
-
     @Override
     public List<TradeResponse> findByFirstNameAndCity(String firstName, String city) {
-        TradeFilterRequest tradeFilterRequest = new TradeFilterRequest();
         List<TradeResponse> responses = new ArrayList<>();
         List<Trade> trades = tradeRepository.findByFirstNameAndCity(firstName, city);
         trades.forEach(trade -> {

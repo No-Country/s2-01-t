@@ -14,8 +14,6 @@ import fiados.com.service.abstraction.CustomerService;
 import fiados.com.service.abstraction.PointService;
 import fiados.com.service.abstraction.TradeService;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -40,6 +38,7 @@ public class PointServiceImpl implements PointService {
     @Autowired
     private AuthService authService;
 
+    //Agrega un puntaje a un cliente y se lo guarda en la lista de comerciante.
     @Override
     public PointResponse addPointTrade(PointRequest request) {
         User user = authService.getInfoUser();
@@ -57,8 +56,6 @@ public class PointServiceImpl implements PointService {
             return pointMapper.DTO2Entity(point);
         }
     }
-
-
     @Override
     public void deleted(Long id) {
        Point point = getPoint(id);
