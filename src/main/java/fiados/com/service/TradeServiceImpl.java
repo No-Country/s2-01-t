@@ -1,6 +1,7 @@
 
 package fiados.com.service;
 
+import fiados.com.models.entity.Customer;
 import fiados.com.models.entity.Trade;
 import fiados.com.models.mapper.TradeMapper;
 import fiados.com.models.request.TradeFilterRequest;
@@ -9,12 +10,16 @@ import fiados.com.models.response.TradeResponse;
 import fiados.com.models.response.TradeUpdateResponse;
 import fiados.com.repository.TradeRepository;
 import fiados.com.repository.UserRepository;
+import fiados.com.service.abstraction.CustomerService;
 import fiados.com.service.abstraction.TradeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 
+import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
+import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,17 +37,22 @@ public class TradeServiceImpl implements TradeService{
     @Autowired
     private TradeMapper tradeMapper;
 
+    @Autowired
+    private CustomerService customerService;
+
     @Override
     public Trade getInfoUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            try {
-                if(principal instanceof Trade) {
-                    String userName = ((Trade) principal).getUsername();
+                try {
+                    if(principal instanceof Trade) {
+                        String userName = ((Trade) principal).getUsername();
+                    }
+
+                }catch (Exception e){
+                    throw new UsernameNotFoundException("User not found");
                 }
-            }catch (Exception e) {
-                throw new UsernameNotFoundException("User not found");
-            }
-            return (Trade) userRepository.findByEmail(principal.toString());
+
+                return (Trade) userRepository.findByEmail(principal.toString());
     }
     @Override
     public void delete(Long id) {

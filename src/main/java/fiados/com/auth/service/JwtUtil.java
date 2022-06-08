@@ -63,6 +63,7 @@ public class JwtUtil {
     //Customer
     public String generateTokenCustomer(UserDetails userDetails) {
         User user = (Customer) userDetails;
+
         final String authorites=userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
