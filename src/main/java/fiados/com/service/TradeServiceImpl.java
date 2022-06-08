@@ -50,8 +50,6 @@ public class TradeServiceImpl implements TradeService {
     @Autowired
     private CustomerService customerService;
 
-    @Autowired
-    private CustomerService customerService;
 
     @Override
     public Trade getInfoUser() {

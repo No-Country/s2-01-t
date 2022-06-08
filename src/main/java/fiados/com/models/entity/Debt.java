@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import javax.validation.constraints.DecimalMin;
 import lombok.Builder;
 
-@SQLDelete(sql = "UPDATE branch SET soft_delete=true debt_id=?")
+@SQLDelete(sql = "UPDATE debt SET soft_delete=true id=?")
 @Where(clause = "soft_delete=false")
 @AllArgsConstructor
 @NoArgsConstructor

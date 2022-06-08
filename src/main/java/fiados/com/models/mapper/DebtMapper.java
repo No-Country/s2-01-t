@@ -28,7 +28,8 @@ public class DebtMapper {
        return DebtResponse.builder()
                .id(debt.getId())
                .totalAmount(debt.getTotalAmount())
-              
+
+
                .build();
    }
 }
