@@ -11,6 +11,8 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import javax.validation.constraints.DecimalMin;
+import lombok.Builder;
 
 @SQLDelete(sql = "UPDATE branch SET soft_delete=true debt_id=?")
 @Where(clause = "soft_delete=false")
@@ -18,13 +20,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter @Setter
 @Entity
+@Builder
 public class Debt {//deudas
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "debt_id")
+    @Id     
+    @GeneratedValue(strategy = GenerationType.AUTO) 
     private Long id;
-
+     
     private double totalAmount;//cantidad total
 
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss[.SSS][.SS][.S]")

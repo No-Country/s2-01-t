@@ -83,6 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE,"/api/v1/customer/{id}").permitAll()
                 .antMatchers(HttpMethod.PUT,"/api/v1/customer/{id}").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/v1/customer/customer_comment").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/v1/customer/total_amount").permitAll()
                     //trade
                 .antMatchers(HttpMethod.DELETE,"/api/v1/trade/{id}").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/trade/me").permitAll()
@@ -90,6 +91,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/api/v1/trade/all").permitAll()
                 .antMatchers(HttpMethod.PUT,"/api/v1/trade/{id}").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/trade/filter").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/v1/trade/trade_debt").permitAll()
                     //Branch
                 .antMatchers(HttpMethod.POST,"/api/v1/branch").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/branch/{id}").permitAll()
@@ -99,8 +101,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     //Point
                 .antMatchers(HttpMethod.POST,"api/v1/point/addPoint").hasAnyAuthority(EnumRoles.MERCHANT.getFullRoleName())
                 .antMatchers(HttpMethod.DELETE,"api/v1/point/{id}").permitAll()
-                .antMatchers(HttpMethod.GET,"api/v1/auth/me").permitAll()
-
+                    //Debt
+                .antMatchers(HttpMethod.GET,"/debts/list").permitAll()
                 .antMatchers(publicEndpoint).permitAll()
                 .anyRequest()
                 .authenticated()

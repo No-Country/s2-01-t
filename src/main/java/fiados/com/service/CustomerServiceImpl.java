@@ -2,6 +2,7 @@ package fiados.com.service;
 
 import fiados.com.models.entity.Comment;
 import fiados.com.models.entity.Customer;
+import fiados.com.models.entity.Debt;
 import fiados.com.models.mapper.CustomerMapper;
 import fiados.com.models.request.CommentRequest;
 import fiados.com.models.request.CommentTradeRequest;
@@ -12,6 +13,7 @@ import fiados.com.repository.CustomerRepository;
 import fiados.com.repository.UserRepository;
 import fiados.com.service.abstraction.CommentService;
 import fiados.com.service.abstraction.CustomerService;
+import fiados.com.service.abstraction.DebtsService;
 import fiados.com.service.abstraction.TradeService;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,8 @@ public class CustomerServiceImpl implements CustomerService {
     private UserRepository userRepository;
     @Autowired
     private TradeService  tradeService;
+    @Autowired 
+    private DebtsService debtService;
     
     private static final String ERROR_USER_NOT_FOUND = "the searched user does not exist";
     
@@ -107,6 +111,12 @@ public class CustomerServiceImpl implements CustomerService {
         
         return customerMapper.dtoCustomerComment( customerRepository.save(customer), response);
     }
-  
-
+    @Override
+    public List<Debt> customerTotalAmount(){
+         Customer customer=getInfoUser(); 
+         System.out.println("Usuario: "+ customer.getLastName().toUpperCase());
+         List<Debt> listDebt=new ArrayList<>();
+         listDebt=debtService.findByCustomer(customer);
+         return listDebt;
+    }
 }

@@ -1,5 +1,6 @@
 package fiados.com.controller;
 
+import fiados.com.models.entity.Debt;
 import fiados.com.models.request.CommentTradeRequest;
 import fiados.com.models.request.CustomerRequest;
 import fiados.com.models.response.CustomerComment;
@@ -55,4 +56,8 @@ public class CustomerController {
         return  customerService.commentUser(comment);
     }
     
+    @GetMapping("/total_amount")
+    public List<Debt> customerTotalAmount(){
+        return customerService.customerTotalAmount();
+    }
 }

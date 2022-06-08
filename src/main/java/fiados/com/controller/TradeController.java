@@ -2,7 +2,9 @@ package fiados.com.controller;
 
 import fiados.com.models.entity.Trade;
 import fiados.com.models.entity.User;
+import fiados.com.models.request.TradeDebtRequest;
 import fiados.com.models.request.TradeRequest;
+import fiados.com.models.response.DebtCustomerResponse;
 import fiados.com.models.response.TradeResponse;
 import fiados.com.models.response.TradeUpdateResponse;
 import fiados.com.service.abstraction.TradeService;
@@ -59,5 +61,8 @@ public class TradeController {
         return ResponseEntity.ok().body(tradeResponses);
     }
 
-
+    @PostMapping("/trade_debt")    
+    public ResponseEntity<DebtCustomerResponse> tradeDebt(@RequestBody TradeDebtRequest request){
+        return ResponseEntity.ok().body(tradeService.tradeDebtCustomer(request));
+    }
 }
