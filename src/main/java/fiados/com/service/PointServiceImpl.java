@@ -12,6 +12,7 @@ import fiados.com.service.abstraction.CustomerService;
 import fiados.com.service.abstraction.PointService;
 import fiados.com.service.abstraction.TradeService;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -24,13 +25,15 @@ public class PointServiceImpl implements PointService {
     private PointMapper pointMapper;
     @Autowired
     private PointRepository pointRepository;
-    @Autowired
-    private TradeService tradeService;
-    @Autowired
-    private CustomerService customerService;
 
     @Autowired
+    private CustomerService customerService;
+    @Autowired
     private TradeRepository tradeRepository;
+
+    @Autowired
+    private TradeService tradeService;
+
     @Override
     public PointResponse addPointTrade(PointRequest request) {
         Trade trade = tradeService.getInfoUser();
@@ -43,6 +46,7 @@ public class PointServiceImpl implements PointService {
         tradeRepository.save(trade);
         return pointMapper.DTO2Entity(point);
     }
+
 
     @Override
     public void deleted(Long id) {
