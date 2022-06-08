@@ -85,7 +85,13 @@ public class CategoryServiceImpl implements CategoryService {
             throw new EntityNotFoundException(ERROR_CONECTION);
         }
     }
-   
+
+    @Override
+    public Category findByIdCategory(Long id) {
+        return categoryRepository.findById(id).orElseThrow(()->
+                new ResponseStatusException(HttpStatus.NOT_FOUND,ERROR_FIND_ID));
+    }
+
     @Transactional
     @Override
     public List<CategoryResponse> findAll() {

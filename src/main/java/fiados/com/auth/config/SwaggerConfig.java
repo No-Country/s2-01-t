@@ -32,7 +32,7 @@ public class SwaggerConfig {
 
     }
     private ApiInfo apiInfo() {
-        ApiInfo apiInfo = new ApiInfo("CallVideo", "No Country .", "1.0", "Terms of service",
+        ApiInfo apiInfo = new ApiInfo("Fiados", "No Country .", "1.0", "Terms of service",
                 new Contact("No Country", "www.fiado.com", "noCountry@gmail.com"), "License of API", "API license URL",
                 Collections.emptyList());
         return apiInfo;
