@@ -128,10 +128,11 @@ public class TradeServiceImpl implements TradeService {
     }
     @Override
     public void tradeAddPoint(Trade trade, Point point){
-        List<Point> points=new ArrayList(); 
-        points.add(point);
-        trade.setPoints(points);
+        List<Point> points=trade.getPoints();               
+       
          try{
+             points.add(point);
+             trade.setPoints(points);
             tradeRepository.save(trade);
         }catch(Exception e){
             throw new RuntimeException("error saving merchant data.");

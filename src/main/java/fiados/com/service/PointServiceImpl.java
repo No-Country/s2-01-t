@@ -69,12 +69,12 @@ public class PointServiceImpl implements PointService {
     }
 
     @Override
-    public boolean addPointcustomer(Point point) {
+    public Point addPointCustomer(Point point) {
         try {
-            pointRepository.save(point);
-            return true;
+           Point p= pointRepository.save(point);
+            return p;
         } catch (Exception e) {
-            return false;
+            throw new RuntimeException("Problems with the generation of points");
         }
     }
 }

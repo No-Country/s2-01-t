@@ -19,4 +19,5 @@ public class CustomerResponse {
     private String country;
     private List<PointResponse> pointResponses;
     private List<DebtResponse> debtResponseList;
+    private List<CommentListResponse> commentListResponses;
 }

@@ -7,6 +7,6 @@ import fiados.com.models.response.PointResponse;
 public interface PointService {
 
     PointResponse addPointTrade(PointRequest request); 
-    boolean addPointcustomer(Point point);
+    Point addPointCustomer(Point point);
     void deleted(Long id);
 }

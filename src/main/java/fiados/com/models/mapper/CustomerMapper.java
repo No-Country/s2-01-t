@@ -16,6 +16,8 @@ public class CustomerMapper {
     
     @Autowired
     private PointMapper pointMapper;
+    @Autowired 
+    private CommentMapper commentMapper;
 
     public CustomerResponse entityToDTO(Customer request) {
       
@@ -34,6 +36,9 @@ public class CustomerMapper {
                         .collect(Collectors.toList()) )
                 .pointResponses(request.getPoints().stream()
                         .map(i->pointMapper.DTO2Entity(i))
+                        .collect(Collectors.toList()))
+                .commentListResponses(request.getComments().stream()
+                        .map(i->commentMapper.toListDto(i))
                         .collect(Collectors.toList()))
                 .build();
     }
