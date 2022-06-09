@@ -5,18 +5,21 @@ import fiados.com.models.entity.Debt;
 import fiados.com.models.entity.Point;
 import fiados.com.models.entity.Trade;
 import fiados.com.models.enums.EnumCondition;
+import fiados.com.models.mapper.PointMapper;
 import fiados.com.models.mapper.TradeMapper;
 import fiados.com.models.request.DebtRequest;
+import fiados.com.models.request.PointRequest;
 import fiados.com.models.request.TradeDebtRequest;
-import fiados.com.models.request.TradeFilterRequest;
 import fiados.com.models.request.TradeRequest;
 import fiados.com.models.response.DebtCustomerResponse;
+import fiados.com.models.response.PointResponse;
 import fiados.com.models.response.TradeResponse;
 import fiados.com.models.response.TradeUpdateResponse;
 import fiados.com.repository.TradeRepository;
 import fiados.com.repository.UserRepository;
 import fiados.com.service.abstraction.CustomerService;
 import fiados.com.service.abstraction.DebtsService;
+import fiados.com.service.abstraction.PointService;
 import fiados.com.service.abstraction.TradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -42,6 +45,12 @@ public class TradeServiceImpl implements TradeService {
     private DebtsService debtService;
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private PointMapper pointMapper;
+
+    @Autowired
+    private PointService pointService;
+
 
 
     @Override
@@ -73,7 +82,7 @@ public class TradeServiceImpl implements TradeService {
         return trade.get();
     }
 
-    //TODO falta agregar que devuelva deuda
+
     //Devuelve todos los comerciante y sus sucursales e puntajes
     @Override
     public List<TradeResponse> getAll() {
@@ -89,10 +98,8 @@ public class TradeServiceImpl implements TradeService {
         return tradeMapper.tradeEntity2DTO(tradeUpdate);
 
     }
-
     @Override
     public List<TradeResponse> findByFirstNameAndCity(String firstName, String city) {
-        TradeFilterRequest tradeFilterRequest = new TradeFilterRequest();
         List<TradeResponse> responses = new ArrayList<>();
         List<Trade> trades = tradeRepository.findByFirstNameAndCity(firstName, city);
         trades.forEach(trade -> {
@@ -138,4 +145,19 @@ public class TradeServiceImpl implements TradeService {
             throw new RuntimeException("error saving merchant data.");
         }
     }
+
+    @Override
+    public PointResponse addPointCustomer(PointRequest request) {
+        Trade trade = getInfoUser();
+        Customer customer = customerService.getById(request.getIdCostumer());
+        Point point = pointMapper.entity2DTO(request);
+        point.setIdTrade(trade.getId());
+        point.setIdCostumer(customer.getId());
+        customer.addPoint(point);
+        pointService.addPointCustomer(point);
+        customerService.save(customer);
+        return pointMapper.DTO2Entity(point);
+    }
+
+
 }

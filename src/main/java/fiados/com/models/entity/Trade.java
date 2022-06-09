@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -28,7 +27,6 @@ public class Trade extends User{
     @NotEmpty(message = "You must entnomer company name")
     @Size(min = 3, max = 100, message = "Company name must be between 3 and 100 characters long")
     private String company_name;
-     
     @OneToMany(mappedBy = "trade")
     private Set<Debt> debts = new HashSet<>();
 

@@ -24,4 +24,6 @@ public interface CustomerService{
     public void customerDebt(Debt debt, Customer custormer);
     //point 
     PointResponse customerPoint(CustomerPointRequest request);
+
+    void save(Customer customer);
 }
