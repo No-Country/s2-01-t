@@ -93,6 +93,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT,"/api/v1/trade/{id}").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/trade/filter").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/v1/trade/trade_debt").permitAll()
+                .antMatchers(HttpMethod.POST,"api/v1/trade/addPoint").hasAnyAuthority(EnumRoles.MERCHANT.getFullRoleName())
                     //Branch
                 .antMatchers(HttpMethod.POST,"/api/v1/branch").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/branch/{id}").permitAll()
@@ -100,7 +101,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE,"/api/v1/branch/{id}").permitAll()
                 .antMatchers(HttpMethod.PUT,"/api/v1/branch/{id}").permitAll()
                     //Point
-                .antMatchers(HttpMethod.POST,"api/v1/point/addPoint").hasAnyAuthority(EnumRoles.MERCHANT.getFullRoleName())
                 .antMatchers(HttpMethod.DELETE,"api/v1/point/{id}").permitAll()
                     //Debt
                 .antMatchers(HttpMethod.GET,"/debts/list").permitAll()

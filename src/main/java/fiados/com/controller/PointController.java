@@ -21,13 +21,6 @@ public class PointController {
     @Autowired
     private PointService pointService;
 
-    @PostMapping("/addPoint")
-    private ResponseEntity<PointResponse> addPointTrade(@Valid @RequestBody PointRequest request){
-
-        PointResponse response = pointService.addPointTrade(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
-
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         pointService.deleted(id);

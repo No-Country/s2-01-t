@@ -37,24 +37,7 @@ public class PointServiceImpl implements PointService {
     @Autowired
     private AuthService authService;
 
-    //Agrega un puntaje a un cliente y se lo guarda en la lista de comerciante.
-    @Override
-    public PointResponse addPointTrade(PointRequest request) {
-        User user = authService.getInfoUser();
-        if (user instanceof Customer) {
-            throw new RuntimeException("Only the merchant can rate the customer");
-        } else {
-            Trade trade = tradeService.getInfoUser();
-            Customer customer = customerService.getById(request.getIdCostumer());
-            Point point = pointMapper.entity2DTO(request);
-            point.setIdTrade(trade.getId());
-            point.setIdCostumer(customer.getId());
-            trade.addPoint(point);//Guardo el puntaje en la lista del comerciante
-            pointRepository.save(point);
-            tradeRepository.save(trade);
-            return pointMapper.DTO2Entity(point);
-        }
-    }
+
 
     @Override
     public void deleted(Long id) {
@@ -72,8 +55,7 @@ public class PointServiceImpl implements PointService {
     @Override
     public Point addPointCustomer(Point point) {
         try {
-           Point p= pointRepository.save(point);
-            return p;
+            return pointRepository.save(point);
         } catch (Exception e) {
             throw new RuntimeException("Problems with the generation of points");
         }

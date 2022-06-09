@@ -57,7 +57,6 @@ public class CustomerController {
     public CustomerComment commentCustomer(@RequestBody CommentTradeRequest comment){
         return  customerService.commentUser(comment);
     }
-    
     @GetMapping("/total_amount")
     public List<Debt> customerTotalAmount(){
         return customerService.customerTotalAmount();

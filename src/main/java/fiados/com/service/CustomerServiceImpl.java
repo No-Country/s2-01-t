@@ -162,4 +162,9 @@ public class CustomerServiceImpl implements CustomerService {
             throw new RuntimeException("error saving client data.");
         }
     }
+
+    @Override
+    public void save(Customer customer) {
+        customerRepository.save(customer);
+    }
 }
