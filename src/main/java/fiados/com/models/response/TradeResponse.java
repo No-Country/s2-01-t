@@ -25,6 +25,7 @@ public class TradeResponse {
     private String company_name;
     private List<BranchResponse> branchResponseList;
     private List<PointResponse> pointResponses;
+    private List<DebtResponse> debtResponseList;
 
     
 }

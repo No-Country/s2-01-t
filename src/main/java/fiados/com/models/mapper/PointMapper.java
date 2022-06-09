@@ -17,6 +17,7 @@ public class PointMapper {
     }
     public PointResponse DTO2Entity(Point point) {
         PointResponse response = new PointResponse();
+        response.setId(point.getId());
         response.setIdCostumer(point.getIdCostumer());
         response.setIdTrade(point.getIdTrade());
         response.setPoint_client(point.getPoint());
@@ -25,9 +26,9 @@ public class PointMapper {
 
     public List<PointResponse> entitySet2DtoList(List<Point> points) {
         List<PointResponse> responses = new ArrayList<>();
-        for (Point p: points){
-            responses.add(DTO2Entity(p));
-        }
+        points.forEach(point -> {
+            responses.add(DTO2Entity(point));
+        });
         return responses;
     }
 }

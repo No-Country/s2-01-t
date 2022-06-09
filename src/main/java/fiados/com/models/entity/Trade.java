@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,8 +15,8 @@ import java.util.Set;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-@SQLDelete(sql = "UPDATE trade SET deleted = true WHERE id=?")
-@Where(clause = "deleted = false")
+@SQLDelete(sql = "UPDATE trade SET soft_delete=true id=?")
+@Where(clause = "soft_delete=false")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
@@ -28,7 +27,6 @@ public class Trade extends User{
     @NotEmpty(message = "You must entnomer company name")
     @Size(min = 3, max = 100, message = "Company name must be between 3 and 100 characters long")
     private String company_name;
-     
     @OneToMany(mappedBy = "trade")
     private Set<Debt> debts = new HashSet<>();
 
@@ -42,13 +40,12 @@ public class Trade extends User{
             joinColumns = @JoinColumn(name = "trade_id"),
             inverseJoinColumns = @JoinColumn(name = "point_id"))
     protected List<Point> points = new ArrayList<>();
-
     public void addPoint(Point point){
         points.add(point);
     }
-
     public void addBranch(Branch branch){
         branchList.add(branch);
     }
+    public void addDebt(Debt debt){debts.add(debt);}
 
 }

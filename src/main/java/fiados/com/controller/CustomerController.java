@@ -1,9 +1,12 @@
 package fiados.com.controller;
 
+import fiados.com.models.entity.Debt;
 import fiados.com.models.request.CommentTradeRequest;
+import fiados.com.models.request.CustomerPointRequest;
 import fiados.com.models.request.CustomerRequest;
 import fiados.com.models.response.CustomerComment;
 import fiados.com.models.response.CustomerResponse;
+import fiados.com.models.response.PointResponse;
 import fiados.com.service.abstraction.CustomerService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -55,4 +58,13 @@ public class CustomerController {
         return  customerService.commentUser(comment);
     }
     
+    @GetMapping("/total_amount")
+    public List<Debt> customerTotalAmount(){
+        return customerService.customerTotalAmount();
+    }
+    @PostMapping("/trade_point")
+   @ResponseStatus(HttpStatus.CREATED)
+    public PointResponse customerPoint( @RequestBody CustomerPointRequest request){
+        return customerService.customerPoint(request);
+    }          
 }

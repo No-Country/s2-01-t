@@ -6,22 +6,27 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import javax.validation.constraints.DecimalMin;
+import lombok.Builder;
 
-
+@SQLDelete(sql = "UPDATE debt SET soft_delete=true id=?")
+@Where(clause = "soft_delete=false")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
 @Entity
+@Builder
 public class Debt {//deudas
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "debt_id")
+    @Id     
+    @GeneratedValue(strategy = GenerationType.AUTO) 
     private Long id;
-
+     
     private double totalAmount;//cantidad total
 
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss[.SSS][.SS][.S]")
@@ -35,5 +40,6 @@ public class Debt {//deudas
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Trade trade;
-
+   @Column(name = "soft_delete")
+    private boolean softDelete = Boolean.FALSE;
 }

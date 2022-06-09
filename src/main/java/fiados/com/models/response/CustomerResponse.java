@@ -1,6 +1,7 @@
 
 package fiados.com.models.response;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.Builder;
@@ -13,7 +14,10 @@ public class CustomerResponse {
     private String email;
     private String role;
     private String dni;
-    protected String city;
-    protected String adress;
-    protected String country;
+    private String city;
+    private String adress;
+    private String country;
+    private List<PointResponse> pointResponses;
+    private List<DebtResponse> debtResponseList;
+    private List<CommentListResponse> commentListResponses;
 }
