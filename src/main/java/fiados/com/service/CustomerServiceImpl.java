@@ -3,17 +3,22 @@ package fiados.com.service;
 import fiados.com.models.entity.Comment;
 import fiados.com.models.entity.Customer;
 import fiados.com.models.entity.Debt;
+import fiados.com.models.entity.Point;
+import fiados.com.models.entity.Trade;
 import fiados.com.models.mapper.CustomerMapper;
 import fiados.com.models.request.CommentRequest;
 import fiados.com.models.request.CommentTradeRequest;
+import fiados.com.models.request.CustomerPointRequest;
 import fiados.com.models.request.CustomerRequest;
 import fiados.com.models.response.CustomerComment;
 import fiados.com.models.response.CustomerResponse;
+import fiados.com.models.response.PointResponse;
 import fiados.com.repository.CustomerRepository;
 import fiados.com.repository.UserRepository;
 import fiados.com.service.abstraction.CommentService;
 import fiados.com.service.abstraction.CustomerService;
 import fiados.com.service.abstraction.DebtsService;
+import fiados.com.service.abstraction.PointService;
 import fiados.com.service.abstraction.TradeService;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -42,6 +47,8 @@ public class CustomerServiceImpl implements CustomerService {
     private TradeService  tradeService;
     @Autowired 
     private DebtsService debtService;
+    @Autowired
+    private PointService pointService;
     
     private static final String ERROR_USER_NOT_FOUND = "the searched user does not exist";
     
@@ -115,8 +122,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
     @Override
     public List<Debt> customerTotalAmount(){
-         Customer customer=getInfoUser(); 
-         System.out.println("Usuario: "+ customer.getLastName().toUpperCase());
+         Customer customer=getInfoUser();     
          List<Debt> listDebt=new ArrayList<>();
          listDebt=debtService.findByCustomer(customer);
          return listDebt;
@@ -132,5 +138,37 @@ public class CustomerServiceImpl implements CustomerService {
         }catch(Exception e){
             throw new RuntimeException("error saving merchant data.");
         }
+    }
+    @Override
+    public PointResponse customerPoint(CustomerPointRequest request){
+        System.out.println("ENTRA ACA");
+         Customer customer=getInfoUser(); 
+          System.out.println("Customer: "+customer.getFirstName().toUpperCase() +" Puntos: "+request.getPoints());
+         Trade trade = tradeService.getTrade(request.getId_trade());
+           
+            
+            Point point = Point.builder()
+                    .idCostumer(customer.getId())
+                    .idTrade(trade.getId())
+                    .point(request.getPoints())
+                    .build();
+            trade.addPoint(point);
+            System.out.println("Trade: "+ trade.getFirstName());
+            try{
+               if(pointService.addPointcustomer(point)){
+                   tradeService.tradeAddPoint(trade, point);
+               }
+                return PointResponse.builder()
+                        .id(point.getId())
+                        .idCostumer(customer.getId())
+                        .idTrade(trade.getId())
+                        .point_client(point.getPoint())
+                        .build();       
+             }catch(Exception e){
+            throw new RuntimeException("error saving client data.");
+           } 
+           
+           
+       
     }
 }

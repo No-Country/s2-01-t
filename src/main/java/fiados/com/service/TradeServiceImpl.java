@@ -2,6 +2,7 @@ package fiados.com.service;
 
 import fiados.com.models.entity.Customer;
 import fiados.com.models.entity.Debt;
+import fiados.com.models.entity.Point;
 import fiados.com.models.entity.Trade;
 import fiados.com.models.enums.EnumCondition;
 import fiados.com.models.mapper.TradeMapper;
@@ -12,7 +13,6 @@ import fiados.com.models.request.TradeRequest;
 import fiados.com.models.response.DebtCustomerResponse;
 import fiados.com.models.response.TradeResponse;
 import fiados.com.models.response.TradeUpdateResponse;
-import fiados.com.repository.DebtRepository;
 import fiados.com.repository.TradeRepository;
 import fiados.com.repository.UserRepository;
 import fiados.com.service.abstraction.CustomerService;
@@ -23,10 +23,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class TradeServiceImpl implements TradeService {
@@ -128,6 +126,15 @@ public class TradeServiceImpl implements TradeService {
         }        
         return tradeMapper.tradeToDebt(trade, customer, debt);
     }
-
-    
+    @Override
+    public void tradeAddPoint(Trade trade, Point point){
+        List<Point> points=new ArrayList(); 
+        points.add(point);
+        trade.setPoints(points);
+         try{
+            tradeRepository.save(trade);
+        }catch(Exception e){
+            throw new RuntimeException("error saving merchant data.");
+        }
+    }
 }
