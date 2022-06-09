@@ -1,5 +1,6 @@
 package fiados.com.service.abstraction;
 
+import fiados.com.models.entity.Point;
 import fiados.com.models.entity.Trade;
 import fiados.com.models.request.TradeDebtRequest;
 import fiados.com.models.request.TradeRequest;
@@ -26,4 +27,6 @@ public interface TradeService {
     DebtCustomerResponse tradeDebtCustomer(TradeDebtRequest request);
 
     List<TradeResponse> findByFirstNameAndCity(String firstName, String city);
+
+    void tradeAddPoint(Trade trade, Point point);
 }

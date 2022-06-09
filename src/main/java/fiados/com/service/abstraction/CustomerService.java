@@ -3,9 +3,11 @@ package fiados.com.service.abstraction;
 import fiados.com.models.entity.Customer;
 import fiados.com.models.entity.Debt;
 import fiados.com.models.request.CommentTradeRequest;
+import fiados.com.models.request.CustomerPointRequest;
 import fiados.com.models.request.CustomerRequest;
 import fiados.com.models.response.CustomerComment;
 import fiados.com.models.response.CustomerResponse;
+import fiados.com.models.response.PointResponse;
 import java.util.List;
 
 public interface CustomerService{
@@ -20,5 +22,6 @@ public interface CustomerService{
     //debt
     public List<Debt> customerTotalAmount();
     public void customerDebt(Debt debt, Customer custormer);
-    
+    //point 
+    PointResponse customerPoint(CustomerPointRequest request);
 }

@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+import lombok.Builder;
 import javax.persistence.*;
 
 import org.hibernate.annotations.SQLDelete;
@@ -18,7 +18,7 @@ import java.util.List;
 @Where(clause = "soft_delete=false")
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter @Setter
+@Getter @Setter @Builder
 @Entity
 public class Point {// puntos
 

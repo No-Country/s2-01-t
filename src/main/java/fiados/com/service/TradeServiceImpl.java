@@ -2,6 +2,7 @@ package fiados.com.service;
 
 import fiados.com.models.entity.Customer;
 import fiados.com.models.entity.Debt;
+import fiados.com.models.entity.Point;
 import fiados.com.models.entity.Trade;
 import fiados.com.models.enums.EnumCondition;
 import fiados.com.models.mapper.TradeMapper;
@@ -23,7 +24,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 
 @Service
 public class TradeServiceImpl implements TradeService {
@@ -72,7 +72,7 @@ public class TradeServiceImpl implements TradeService {
         return trade.get();
     }
 
-    //TODO falta agregar que devuelva deuda
+
     //Devuelve todos los comerciante y sus sucursales e puntajes
     @Override
     public List<TradeResponse> getAll() {
@@ -123,6 +123,16 @@ public class TradeServiceImpl implements TradeService {
         }        
         return tradeMapper.tradeToDebt(trade, customer, debt);
     }
-
-    
+    @Override
+    public void tradeAddPoint(Trade trade, Point point){
+        List<Point> points=trade.getPoints();               
+       
+         try{
+             points.add(point);
+             trade.setPoints(points);
+            tradeRepository.save(trade);
+        }catch(Exception e){
+            throw new RuntimeException("error saving merchant data.");
+        }
+    }
 }
