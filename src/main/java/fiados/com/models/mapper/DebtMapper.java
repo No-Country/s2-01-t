@@ -4,6 +4,7 @@ import fiados.com.models.entity.Debt;
 import fiados.com.models.enums.EnumCondition;
 import fiados.com.models.request.DebtRequest;
 import fiados.com.models.response.DebtResponse;
+import fiados.com.models.response.DebtTotalResponse;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,4 +39,14 @@ public class DebtMapper {
             });
             return debtResponses;
     }
+   
+    public DebtTotalResponse debtTotalToDTO(Debt debt) {       
+        return DebtTotalResponse.builder()
+            .id_customer(debt.getCustomer().getId())
+            .company(debt.getTrade().getCompany_name())
+            .total_debt(debt.getTotalAmount())
+            .id_trade(debt.getTrade().getId())
+            .build();
+    }
+    
 }

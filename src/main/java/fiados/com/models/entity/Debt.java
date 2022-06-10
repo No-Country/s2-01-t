@@ -19,8 +19,12 @@ import lombok.Builder;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-@Entity
+
 @Builder
+//@NamedQuery(name="Debt.total", query = "SELECT b.customer as id_customer, b.trade as id_trade , sum(b.totalAmount) as total_debt"
+//         + " FROM Debt b WHERE b.customer=:id AND b.conditions='ACTIVATED'"
+//         + "GROUP BY  b.customer,b.trade") 
+@Entity
 public class Debt {//deudas
 
     @Id     

@@ -84,7 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT,"/api/v1/customer/{id}").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/v1/customer/customer_comment").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/customer/total_amount").permitAll()
-                .antMatchers(HttpMethod.POST,"/api/v1/customer/trade_point").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/v1/customer/trade_point").permitAll()                
                     //trade
                 .antMatchers(HttpMethod.DELETE,"/api/v1/trade/{id}").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/trade/me").permitAll()
@@ -104,6 +104,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE,"api/v1/point/{id}").permitAll()
                     //Debt
                 .antMatchers(HttpMethod.GET,"/debts/list").permitAll()
+                .antMatchers(HttpMethod.GET,"/debts/debt_total/{id}").permitAll()
                 .antMatchers(publicEndpoint).permitAll()
                 .anyRequest()
                 .authenticated()

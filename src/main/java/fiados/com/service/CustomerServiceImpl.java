@@ -126,6 +126,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Debt> customerTotalAmount() {
+        
+        //sin uso aun
         Customer customer = getInfoUser();
         List<Debt> listDebt = new ArrayList<>();
         listDebt = debtService.findByCustomer(customer);
