@@ -104,6 +104,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE,"api/v1/point/{id}").permitAll()
                     //Debt
                 .antMatchers(HttpMethod.GET,"/debts/list").permitAll()
+                .antMatchers(HttpMethod.GET,"/debts/total").permitAll()
                 .antMatchers(publicEndpoint).permitAll()
                 .anyRequest()
                 .authenticated()

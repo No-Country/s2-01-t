@@ -3,8 +3,9 @@ package fiados.com.service;
 import fiados.com.models.entity.Customer;
 import fiados.com.models.entity.Debt;
 import fiados.com.models.mapper.DebtMapper;
+import fiados.com.models.request.DebRequestTotal;
 import fiados.com.models.request.DebtRequest;
-import fiados.com.models.response.CustomerDebtResponse;
+import fiados.com.models.response.DebResponseTotal;
 import fiados.com.models.response.DebtResponse;
 import fiados.com.models.response.TradeDebtResponce;
 import fiados.com.repository.DebtRepository;
@@ -48,5 +49,16 @@ public class DebtsServiceImpl implements DebtsService {
         return debtRepository.findAll().stream()
                 .map( i -> debtMapper.entityToDTO(i))
                 .collect(Collectors.toList());  
+    }
+
+    @Override
+    public DebResponseTotal getTotal(DebRequestTotal request) {
+        List<Debt> debts = debtRepository.findByCustomerIdAndTradeId(request.getCustomerId(),request.getTradeId());
+        double suma = debts.stream().parallel().mapToDouble(Debt::getTotalAmount).sum();
+        return DebResponseTotal.builder()
+                .totalAmount(suma)
+                .tradeId(request.getTradeId())
+                .customerId(request.getCustomerId())
+                .build();
     }
 }

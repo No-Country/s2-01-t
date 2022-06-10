@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DebtRepository extends JpaRepository<Debt, Long> {
+    List<Debt> findByCustomerIdAndTradeId(Long customerId, Long tradeId);
     //  List<Debt> findByCustomer(Customer customer);
 //    Debt findByTrade();
 }
