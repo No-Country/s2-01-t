@@ -13,7 +13,9 @@ import javax.persistence.Enumerated;
 @Getter
 public class DebRequestTotal {
 
-    private double totalAmount;//cantidad total
+    //private double totalAmount;//cantidad total
     private Long customerId;
     private Long tradeId;
+    @Enumerated(value = EnumType.STRING)
+    private EnumCondition conditions;
 }

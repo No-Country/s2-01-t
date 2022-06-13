@@ -91,7 +91,7 @@ public class UserServiceImpl implements UserDetailsService, AuthService {
     public AuthResponse login(AuthRequest request) {
         User user = getUser(request.getEmail());
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()));
-        return new AuthResponse(jwt.generateToken(user), user.getEmail(), user.getRole());
+        return new AuthResponse(jwt.generateToken(user), user.getEmail(), user.getRole(),user.getFirstName(),user.getLastName());
     }
 
     @Override

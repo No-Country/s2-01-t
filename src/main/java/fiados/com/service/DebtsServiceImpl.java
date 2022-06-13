@@ -2,6 +2,7 @@ package fiados.com.service;
 
 import fiados.com.models.entity.Customer;
 import fiados.com.models.entity.Debt;
+import fiados.com.models.enums.EnumCondition;
 import fiados.com.models.mapper.DebtMapper;
 import fiados.com.models.request.DebRequestTotal;
 import fiados.com.models.request.DebtRequest;
@@ -53,7 +54,7 @@ public class DebtsServiceImpl implements DebtsService {
 
     @Override
     public DebResponseTotal getTotal(DebRequestTotal request) {
-        List<Debt> debts = debtRepository.findByCustomerIdAndTradeId(request.getCustomerId(),request.getTradeId());
+        List<Debt> debts = debtRepository.findByCustomerIdAndTradeIdAndConditions(request.getCustomerId(),request.getTradeId(),request.getConditions());
         double suma = debts.stream().parallel().mapToDouble(Debt::getTotalAmount).sum();
         return DebResponseTotal.builder()
                 .totalAmount(suma)
