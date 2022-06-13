@@ -5,11 +5,19 @@ import fiados.com.models.entity.Customer;
 import fiados.com.models.request.CustomerRequest;
 import fiados.com.models.response.CustomerComment;
 import fiados.com.models.response.CustomerResponse;
+import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CustomerMapper {
-
+    @Autowired 
+    private DebtMapper debtMapper;
+    
+    @Autowired
+    private PointMapper pointMapper;
+    @Autowired 
+    private CommentMapper commentMapper;
 
     public CustomerResponse entityToDTO(Customer request) {
       
@@ -23,6 +31,15 @@ public class CustomerMapper {
                 .adress(request.getAdress())
                 .city(request.getCity())
                 .country(request.getCountry())
+                .debtResponseList(request.getDebts().stream()
+                        .map( i -> debtMapper.entityToDTO(i) )
+                        .collect(Collectors.toList()) )
+                .pointResponses(request.getPoints().stream()
+                        .map(i->pointMapper.DTO2Entity(i))
+                        .collect(Collectors.toList()))
+                .commentListResponses(request.getComments().stream()
+                        .map(i->commentMapper.toListDto(i))
+                        .collect(Collectors.toList()))
                 .build();
     }
 
