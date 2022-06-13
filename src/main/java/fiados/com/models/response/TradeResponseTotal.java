@@ -1,17 +1,13 @@
-
 package fiados.com.models.response;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter @Setter
-public class TradeResponse {
+@Builder
+@Setter
+@Getter
+public class TradeResponseTotal {
 
     private Long id;
     private String email;
@@ -23,9 +19,4 @@ public class TradeResponse {
     private String firstName;
     private String lastName;
     private String company_name;
-    private List<BranchResponse> branchResponseList;
-    private List<PointResponse> pointResponses;
-    private List<DebtResponse> debtResponseList;
-
-    
 }

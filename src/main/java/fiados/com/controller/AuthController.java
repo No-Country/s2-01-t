@@ -1,5 +1,7 @@
 package fiados.com.controller;
 
+import fiados.com.models.entity.Trade;
+import fiados.com.models.entity.User;
 import fiados.com.models.request.AuthRequest;
 import fiados.com.models.request.UserRegister;
 import fiados.com.models.response.AuthResponse;
@@ -29,5 +31,10 @@ public class AuthController {
     private ResponseEntity<AuthResponse> login(@Valid @RequestBody AuthRequest request){
         AuthResponse response = authService.login(request);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<User> getInfoUser(){
+        return new ResponseEntity<>(authService.getInfoUser(), HttpStatus.OK);
     }
 }

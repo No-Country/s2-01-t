@@ -83,6 +83,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE,"/api/v1/customer/{id}").permitAll()
                 .antMatchers(HttpMethod.PUT,"/api/v1/customer/{id}").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/v1/customer/customer_comment").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/v1/customer/total_amount").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/v1/customer/trade_point").permitAll()
                     //trade
                 .antMatchers(HttpMethod.DELETE,"/api/v1/trade/{id}").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/trade/me").permitAll()
@@ -90,6 +92,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/api/v1/trade/all").permitAll()
                 .antMatchers(HttpMethod.PUT,"/api/v1/trade/{id}").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/trade/filter").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/v1/trade/trade_debt").permitAll()
+                .antMatchers(HttpMethod.POST,"api/v1/trade/addPoint").hasAnyAuthority(EnumRoles.MERCHANT.getFullRoleName())
                     //Branch
                 .antMatchers(HttpMethod.POST,"/api/v1/branch").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/branch/{id}").permitAll()
@@ -97,9 +101,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE,"/api/v1/branch/{id}").permitAll()
                 .antMatchers(HttpMethod.PUT,"/api/v1/branch/{id}").permitAll()
                     //Point
-                .antMatchers(HttpMethod.POST,"api/v1/point").hasAnyAuthority(EnumRoles.MERCHANT.getFullRoleName())
-                .antMatchers(HttpMethod.POST,"api/v1/point/{id}").permitAll()
-
+                .antMatchers(HttpMethod.DELETE,"api/v1/point/{id}").permitAll()
+                    //Debt
+                .antMatchers(HttpMethod.GET,"/debts/list").permitAll()
+                .antMatchers(HttpMethod.GET,"/debts/total").permitAll()
                 .antMatchers(publicEndpoint).permitAll()
                 .anyRequest()
                 .authenticated()
