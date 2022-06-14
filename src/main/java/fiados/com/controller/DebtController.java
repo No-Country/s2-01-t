@@ -1,12 +1,17 @@
 package fiados.com.controller;
 
+import fiados.com.models.request.DebRequestTotal;
+import fiados.com.models.response.DebResponseTotal;
 import fiados.com.models.response.DebtResponse;
 import fiados.com.models.response.DebtTotalResponse;
 import fiados.com.service.abstraction.DebtsService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,8 +34,16 @@ public class DebtController {
     public List<DebtResponse> debtCustomer(){       
         return debtService.findAllDebt();
     }
+
     @GetMapping("/debt_total/{id}")
     public List<DebtTotalResponse> debtTotalCustomer(@PathVariable Long id){        
         return debtService.findDebtTotalResponse(id);
     }
+
+    @GetMapping("/total")
+    public ResponseEntity<DebResponseTotal> getTotal(@RequestBody DebRequestTotal requestTotal){
+        DebResponseTotal responseTotal = debtService.getTotal(requestTotal);
+        return ResponseEntity.status(HttpStatus.OK).body(responseTotal);
+    }
+
 }

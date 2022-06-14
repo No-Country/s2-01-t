@@ -4,16 +4,17 @@ import fiados.com.models.entity.Customer;
 import fiados.com.models.entity.Debt;
 import fiados.com.models.enums.EnumCondition;
 import fiados.com.models.mapper.DebtMapper;
+import fiados.com.models.request.DebRequestTotal;
 import fiados.com.models.request.DebtRequest;
+import fiados.com.models.response.DebResponseTotal;
 import fiados.com.models.response.DebtResponse;
-import fiados.com.models.response.DebtTotalResponse;
 import fiados.com.models.response.TradeDebtResponce;
 import fiados.com.repository.DebtRepository;
 import fiados.com.repository.UserRepository;
-import fiados.com.service.abstraction.DebtsService;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import fiados.com.service.abstraction.DebtsService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -53,13 +54,16 @@ public class DebtsServiceImpl implements DebtsService {
                 .collect(Collectors.toList());  
     }
     
-    @Override 
-    public  List<DebtTotalResponse> findDebtTotalResponse(Long id) {
-       boolean exist=userRepository.existsById(id);       
-    return debtRepository.findByCustomerIdAndTradeIdAndConditions(3L,1L,EnumCondition.ACTIVATED).stream()
-                .map( i -> debtMapper.debtTotalToDTO(i))
-                .collect(Collectors.toList());
+
+    @Override
+    public DebResponseTotal getTotal(DebRequestTotal request) {
+        List<Debt> debts = debtRepository.findByCustomerIdAndTradeIdAndConditionsAndSumTotalamount(request.getCustomerId(),request.getTradeId(),request.getConditions());
+        double suma = debts.stream().parallel().mapToDouble(Debt::getTotalAmount).sum();
+        return DebResponseTotal.builder()
+                .totalAmount(suma)
+                .tradeId(request.getTradeId())
+                .customerId(request.getCustomerId())
+                .build();
     }
-//    
- 
+
 }

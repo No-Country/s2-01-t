@@ -105,6 +105,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     //Debt
                 .antMatchers(HttpMethod.GET,"/debts/list").permitAll()
                 .antMatchers(HttpMethod.GET,"/debts/debt_total/{id}").permitAll()
+                .antMatchers(HttpMethod.GET,"/debts/total").permitAll()
+
                 .antMatchers(publicEndpoint).permitAll()
                 .anyRequest()
                 .authenticated()
