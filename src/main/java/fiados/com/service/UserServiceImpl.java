@@ -11,14 +11,12 @@ import fiados.com.models.mapper.UserMapper;
 import fiados.com.models.request.AuthRequest;
 import fiados.com.models.request.UserRegister;
 import fiados.com.models.response.AuthResponse;
-import fiados.com.models.response.ListUserResponse;
 import fiados.com.models.response.UserResponse;
 import fiados.com.repository.CustomerRepository;
 import fiados.com.repository.TradeRepository;
 import fiados.com.repository.UserRepository;
 import fiados.com.service.abstraction.AuthService;
 import fiados.com.service.abstraction.RoleService;
-import fiados.com.service.abstraction.UserAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,10 +29,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImpl implements UserDetailsService, AuthService, UserAdminService {
+public class UserServiceImpl implements UserDetailsService, AuthService {
 
     private static final String USER_NOT_FOUND_MESSAGE = "User not found.";
     private static final String USER_EMAIL_ERROR = "Email address is already used.";
@@ -52,7 +49,7 @@ public class UserServiceImpl implements UserDetailsService, AuthService, UserAdm
     private RoleService roleService;
     @Autowired
     private JwtUtil jwt;
-
+   
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -126,13 +123,5 @@ public class UserServiceImpl implements UserDetailsService, AuthService, UserAdm
         return getUser(username);
     }
     
- 
-
-    @Override
-    public List<ListUserResponse> getAllUser() {
-        return userRepository.findAll().stream()
-                .map(i -> userMapper.userToDto(i))
-                .collect(Collectors.toList());
-    }
-    
+     
 }
