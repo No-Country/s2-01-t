@@ -7,6 +7,7 @@ import fiados.com.models.entity.Trade;
 import fiados.com.models.entity.User;
 import fiados.com.models.enums.EnumCondition;
 import fiados.com.models.enums.EnumRoles;
+import fiados.com.models.mapper.TradeMapper;
 import fiados.com.models.mapper.UserMapper;
 import fiados.com.models.request.AuthRequest;
 import fiados.com.models.request.UserRegister;
@@ -52,6 +53,9 @@ public class UserServiceImpl implements UserDetailsService, AuthService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private TradeMapper tradeMapper;
 
     @Override
     public UserResponse register(UserRegister request) {
