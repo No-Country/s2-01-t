@@ -8,8 +8,6 @@ import fiados.com.models.response.UserResponse;
 
 public interface AuthService {
     UserResponse register(UserRegister request);
-
     AuthResponse login(AuthRequest request);
-
-    User getInfoUser();
+    User getInfoUser();    
 }

@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserDetailsService, AuthService {
     private RoleService roleService;
     @Autowired
     private JwtUtil jwt;
-
+   
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -105,11 +105,9 @@ public class UserServiceImpl implements UserDetailsService, AuthService {
             if(principal instanceof User) {
                 String userName = ((User) principal).getUsername();
             }
-
         }catch (Exception e){
             throw new UsernameNotFoundException("User not found");
         }
-
         return userRepository.findByEmail(principal.toString());
     }
 
@@ -123,12 +121,11 @@ public class UserServiceImpl implements UserDetailsService, AuthService {
         }
         return user;
     }
-
+    
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return getUser(username);
     }
     
-    
-    
+     
 }
