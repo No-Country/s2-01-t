@@ -31,4 +31,6 @@ public class PointMapper {
         });
         return responses;
     }
+
+
 }
