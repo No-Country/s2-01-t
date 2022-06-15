@@ -52,8 +52,8 @@ public class DatabaseSeeders {
     
     private void createCategory(){        
        
-        categoryRepository.save( new Category(1L,"Calzados","Tienda de calzados",false,null));
-        categoryRepository.save( new Category(2L,"Comida","Tienda de Comidas",false,null));
-        categoryRepository.save( new Category(3L,"Chocolate","Tienda de chocolates",false,null));
+        categoryRepository.save( new Category(1L,"Calzados","Tienda de calzados",false));
+        categoryRepository.save( new Category(2L,"Comida","Tienda de Comidas",false));
+        categoryRepository.save( new Category(3L,"Chocolate","Tienda de chocolates",false));
     }
 }
