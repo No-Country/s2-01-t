@@ -5,6 +5,7 @@ import fiados.com.models.entity.Trade;
 import fiados.com.models.request.BranchRequest;
 import fiados.com.models.response.BranchResponse;
 import fiados.com.models.response.TradeBranchResponse;
+import fiados.com.models.response.UserFilterResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -75,5 +76,14 @@ public class BranchMapper {
             responses.add(branchEntity2DTO(branch));
         });
         return responses;
+    }
+
+
+    public BranchResponse entity2DTOFilter(Branch branch) {
+        BranchResponse response = new BranchResponse();
+        response.setId(branch.getId());
+        response.setDireccion(branch.getDireccion());
+        response.setDescriptions(branch.getDescriptions());
+        return response;
     }
 }

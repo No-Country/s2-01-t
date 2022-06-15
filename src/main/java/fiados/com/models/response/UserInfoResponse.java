@@ -15,5 +15,5 @@ public class UserInfoResponse {
     private String role;
     private String city;
     private String direction;
-    private String password;
+  
 }
