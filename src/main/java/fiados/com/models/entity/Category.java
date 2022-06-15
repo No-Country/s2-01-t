@@ -1,4 +1,7 @@
 package fiados.com.models.entity;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotEmpty;
@@ -28,24 +31,24 @@ import org.hibernate.annotations.SQLDelete;
 )
 @Entity
 @Builder
-public class Category  {
+@ApiModel("Category Model")
+public class Category {
 
-     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotEmpty(message = "Nombre Obligatorio")
+    @ApiModelProperty("Name of the category")
     @Column(name = "name", nullable = false, updatable = true, unique = true)
     private String name;
-
-    @Column(name = "description")
+    @ApiModelProperty("Description of the category")    
     private String description;
     @Column(name = "soft_deleted")
+    @ApiModelProperty("Logical erase")
     private boolean soft_deleted = Boolean.FALSE;
 
     public boolean isEnabled() {
         return !this.soft_deleted;
     }
 
-    @OneToOne(mappedBy = "category")
-    private Branch branch;
 }

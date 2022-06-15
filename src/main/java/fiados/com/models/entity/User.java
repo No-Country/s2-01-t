@@ -1,5 +1,7 @@
 
 package fiados.com.models.entity;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,12 +19,14 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 @Entity
+
+@ApiModel("Model User")
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    protected Long id;
-    @NotBlank(message = "First Name cannot be empty.")
+    protected Long id;    
+    @NotBlank(message = "First Name cannot be empty.")   
     protected String firstName;
     @NotBlank(message = "Last Name cannot be empty.")
     protected String lastName;
@@ -39,6 +43,7 @@ public class User implements UserDetails {
     protected String adress;
     protected String country;
     @Column(name = "soft_delete")
+    @ApiModelProperty("Logical erase property")
     protected boolean softDelete=Boolean.FALSE;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)

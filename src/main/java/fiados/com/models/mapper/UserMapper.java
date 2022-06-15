@@ -2,8 +2,10 @@ package fiados.com.models.mapper;
 
 import fiados.com.models.entity.Customer;
 import fiados.com.models.entity.Trade;
+import fiados.com.models.entity.User;
 import fiados.com.models.enums.EnumCondition;
 import fiados.com.models.request.UserRegister;
+import fiados.com.models.response.ListUserResponse;
 import fiados.com.models.response.UserResponse;
 import org.springframework.stereotype.Component;
 
@@ -51,5 +53,17 @@ public class UserMapper {
         user.setStatus(EnumCondition.PAUSED);
         user.setCompany_name(request.getCompany_name());
         return user;
+    }
+    
+     public ListUserResponse userToDto(User user) {       
+        return ListUserResponse.builder()
+                .id(user.getId())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .role(user.getRole())
+                .adress(user.getAdress())
+                .city(user.getCity())
+                .country(user.getCountry())
+                .build();
     }
 }
