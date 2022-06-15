@@ -7,5 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/comments")
 @Api(value = "Comment Controller", description = "Controller to manage comments")
+@CrossOrigin(origins = "*")
 public class CommentController {
 }
