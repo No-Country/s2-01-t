@@ -1,6 +1,8 @@
 package fiados.com.models.entity;
 
 import fiados.com.models.enums.EnumCondition;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @Getter @Setter
 @Entity
+@ApiModel("Model Trade")
 public class Trade extends User{
     
     @NotBlank
@@ -28,10 +31,12 @@ public class Trade extends User{
     @Size(min = 3, max = 100, message = "Company name must be between 3 and 100 characters long")
     private String company_name;
     @OneToMany(mappedBy = "trade")
+    @ApiModelProperty("Client debt list")
     private Set<Debt> debts = new HashSet<>();
 
     private EnumCondition status;
     @OneToMany (mappedBy = "trade", cascade = CascadeType.ALL)
+    @ApiModelProperty("Merchant Branchest")
     private List<Branch> branchList = new ArrayList<>();
 
     @ManyToMany
@@ -39,6 +44,7 @@ public class Trade extends User{
             name = "trade_points",
             joinColumns = @JoinColumn(name = "trade_id"),
             inverseJoinColumns = @JoinColumn(name = "point_id"))
+    @ApiModelProperty("Lists of points received by customers")
     protected List<Point> points = new ArrayList<>();
     public void addPoint(Point point){
         points.add(point);

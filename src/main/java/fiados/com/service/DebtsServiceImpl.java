@@ -2,7 +2,6 @@ package fiados.com.service;
 
 import fiados.com.models.entity.Customer;
 import fiados.com.models.entity.Debt;
-import fiados.com.models.enums.EnumCondition;
 import fiados.com.models.mapper.DebtMapper;
 import fiados.com.models.request.DebRequestTotal;
 import fiados.com.models.request.DebtRequest;

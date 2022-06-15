@@ -8,7 +8,6 @@ import java.util.List;
 import javassist.NotFoundException;
 import javax.persistence.EntityNotFoundException;
 
-
 public interface UserService {
     User getInfoUser() throws NotFoundException;
     void delete(Long id)throws EntityNotFoundException;
@@ -17,4 +16,5 @@ public interface UserService {
     List<UserResponse> getAllUser();
 
     List<UserFilterResponse> searchUsers(String term);
+
 }

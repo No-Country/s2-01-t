@@ -1,13 +1,9 @@
 package fiados.com.models.response;
 
-import fiados.com.models.enums.EnumCondition;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 
 @Builder
 @Setter

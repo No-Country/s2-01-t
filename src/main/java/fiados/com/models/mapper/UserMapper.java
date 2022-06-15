@@ -6,10 +6,10 @@ import fiados.com.models.entity.User;
 import fiados.com.models.enums.EnumCondition;
 import fiados.com.models.request.UserRegister;
 import fiados.com.models.response.UserFilterResponse;
+import fiados.com.models.response.ListUserResponse;
 import fiados.com.models.response.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.stream.Collectors;
 
 @Component
@@ -102,5 +102,18 @@ public class UserMapper {
         response.setDebtResponseList(user.getDebts().stream().map(debt ->
                 debtMapper.entityToDTO(debt)).collect(Collectors.toList()));
         return response;
+    }
+
+    public ListUserResponse userToDto(User user) {
+        return ListUserResponse.builder()
+                .id(user.getId())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .role(user.getRole())
+                .adress(user.getAdress())
+                .city(user.getCity())
+                .country(user.getCountry())
+                .build();
+
     }
 }

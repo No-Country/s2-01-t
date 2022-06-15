@@ -1,6 +1,8 @@
 package fiados.com.models.entity;
 
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,11 +17,13 @@ import java.util.Set;
 @NoArgsConstructor
 @Setter @Getter
 @Entity
+@ApiModel("Model Customer")
 public class Customer extends User{
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @ApiModelProperty("List of debts in shops")
     private Set<Debt> debts = new HashSet<>();
-
+    @ApiModelProperty("List of comments generated to merchants")
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Comment> comments ;
 
@@ -28,6 +32,7 @@ public class Customer extends User{
             name = "customer_points",
             joinColumns = @JoinColumn(name = "customer_id"),
             inverseJoinColumns = @JoinColumn(name = "point_id"))
+    @ApiModelProperty("Lists of points received by customers")
     protected List<Point> points = new ArrayList<>();
 
     public void addPoint(Point point){

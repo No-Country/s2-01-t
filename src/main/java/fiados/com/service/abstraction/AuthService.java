@@ -11,10 +11,10 @@ import java.util.List;
 
 public interface AuthService {
     UserResponse register(UserRegister request);
-
     AuthResponse login(AuthRequest request);
-
     User getInfoUser();
 
     List<UserFilterResponse> searchUsers(String term);
+
+
 }

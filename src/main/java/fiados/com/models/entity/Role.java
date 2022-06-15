@@ -1,5 +1,6 @@
 package fiados.com.models.entity;
 
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @Entity
 @Table(name = "roles")
+@ApiModel("Model Roles")
 public class Role {
 
     @Id
