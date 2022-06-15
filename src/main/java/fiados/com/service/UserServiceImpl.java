@@ -7,10 +7,12 @@ import fiados.com.models.entity.Trade;
 import fiados.com.models.entity.User;
 import fiados.com.models.enums.EnumCondition;
 import fiados.com.models.enums.EnumRoles;
+import fiados.com.models.mapper.TradeMapper;
 import fiados.com.models.mapper.UserMapper;
 import fiados.com.models.request.AuthRequest;
 import fiados.com.models.request.UserRegister;
 import fiados.com.models.response.AuthResponse;
+import fiados.com.models.response.UserFilterResponse;
 import fiados.com.models.response.UserResponse;
 import fiados.com.repository.CustomerRepository;
 import fiados.com.repository.TradeRepository;
@@ -26,12 +28,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service
-public class UserServiceImpl implements UserDetailsService, AuthService {
+public class UserServiceImpl implements UserDetailsService, AuthService{
 
     private static final String USER_NOT_FOUND_MESSAGE = "User not found.";
     private static final String USER_EMAIL_ERROR = "Email address is already used.";
@@ -52,6 +54,9 @@ public class UserServiceImpl implements UserDetailsService, AuthService {
    
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private TradeMapper tradeMapper;
 
     @Override
     public UserResponse register(UserRegister request) {
@@ -107,6 +112,25 @@ public class UserServiceImpl implements UserDetailsService, AuthService {
         return userRepository.findByEmail(principal.toString());
     }
 
+    @Override
+    public List<UserFilterResponse> searchUsers(String term) {
+        List<UserFilterResponse> userFilterListReturned = new ArrayList<>();
+        List<User> users = userRepository.search("%" + term + "%");
+        Trade trade = new Trade();
+        users.forEach(user -> {
+            if (user instanceof Trade){
+                //user = trade;
+                userFilterListReturned.add(userMapper.entityToDTOFilter((Trade) user));
+            }
+            if (user instanceof Customer){
+                //user = trade;
+                userFilterListReturned.add(userMapper.entityToDTOFilterCustomer((Customer)user));
+            }
+
+        });
+        return userFilterListReturned;
+    }
+
     private User getUser(String username) {
         User user = userRepository.findByEmail(username);
         if (user == null) {
@@ -122,6 +146,5 @@ public class UserServiceImpl implements UserDetailsService, AuthService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return getUser(username);
     }
-    
-     
+
 }
