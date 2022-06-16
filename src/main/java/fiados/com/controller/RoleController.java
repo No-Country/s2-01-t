@@ -7,5 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/role")
+@CrossOrigin(origins = "*")
 public class RoleController {
 }
