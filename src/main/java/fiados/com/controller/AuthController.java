@@ -1,6 +1,4 @@
 package fiados.com.controller;
-
-import fiados.com.models.entity.Trade;
 import fiados.com.models.entity.User;
 import fiados.com.models.request.AuthRequest;
 import fiados.com.models.request.UserRegister;
