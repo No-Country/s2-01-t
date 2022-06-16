@@ -3,8 +3,13 @@ package fiados.com.models.mapper;
 import fiados.com.models.entity.Comment;
 import fiados.com.models.entity.Customer;
 import fiados.com.models.request.CustomerRequest;
+import fiados.com.models.response.CustomerAbsResponse;
 import fiados.com.models.response.CustomerComment;
 import fiados.com.models.response.CustomerResponse;
+import fiados.com.models.response.DebResponseTotal;
+import fiados.com.service.abstraction.DebtsService;
+import fiados.com.service.abstraction.PointService;
+import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,6 +23,8 @@ public class CustomerMapper {
     private PointMapper pointMapper;
     @Autowired 
     private CommentMapper commentMapper;
+    @Autowired
+    private PointService pointService;
 
     public CustomerResponse entityToDTO(Customer request) {
       
@@ -67,4 +74,26 @@ public class CustomerMapper {
                 .company(comment.getTrade().getCompany_name())                
                 .build();
     }
+    
+     public CustomerAbsResponse entityTodDtoAbs(Customer request, List<DebResponseTotal> listDebts) {        
+        
+
+        return CustomerAbsResponse.builder()
+                .id(request.getId())
+                .firstName(request.getFirstName())
+                .lastName(request.getLastName())
+                .dni(request.getDni())
+                .email(request.getEmail())
+                .role(request.getRole())
+                .adress(request.getAdress())
+                .city(request.getCity())
+                .country(request.getCountry())
+                .pointResponses(pointService.totalPoint(request.getPoints()))//             
+                .debt_total(listDebts)
+//                .debt_total(request.getDebts().stream()
+//                        .map( i -> debtMapper.ToTotalDebt(i) )
+//                        .collect(Collectors.toList()) )
+                .build();
+    }
+//       List<Long> debtsTotal=debtService.debtsTotal( customer.getDebts()); 
 }

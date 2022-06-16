@@ -11,6 +11,7 @@ import fiados.com.models.response.TradeDebtResponce;
 import fiados.com.repository.DebtRepository;
 import fiados.com.service.abstraction.DebtsService;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,4 +62,13 @@ public class DebtsServiceImpl implements DebtsService {
                 .customerId(request.getCustomerId())
                 .build();
     }
+    @Override
+    public List<Long> debtsTotal(Set<Debt> debts) { //obtengo lista de trade    
+     return debts.stream()
+      .map(item->item.getTrade().getId())
+      .distinct()
+      .collect(Collectors.toList());     
+    }
+    
+  
 }

@@ -4,6 +4,7 @@ import fiados.com.models.entity.Debt;
 import fiados.com.models.request.CommentTradeRequest;
 import fiados.com.models.request.CustomerPointRequest;
 import fiados.com.models.request.CustomerRequest;
+import fiados.com.models.response.CustomerAbsResponse;
 import fiados.com.models.response.CustomerComment;
 import fiados.com.models.response.CustomerResponse;
 import fiados.com.models.response.PointResponse;
@@ -35,7 +36,7 @@ public class CustomerController {
 
     @ApiOperation(value = "Method to search for a list of clients", notes = "Return list client")
     @GetMapping("/all")
-    public List<CustomerResponse> getAllCustomers() {
+    public List<CustomerAbsResponse> getAllCustomers() {
         return customerService.getAllUser();
     }
 
