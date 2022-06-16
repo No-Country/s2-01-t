@@ -20,8 +20,9 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/v1/trade")
 @CrossOrigin(origins = "*")
+@RequestMapping(path = "/api/v1/trade")
+
 @Api(value = "Controller to manage trade", description = "Controllers related to trade services")
 public class TradeController {
 
