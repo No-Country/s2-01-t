@@ -63,4 +63,6 @@ public class AuthControllerTest extends AbstractBaseIntegrationTest {
         Assert.assertEquals(HttpStatus.CREATED, response.getStatusCode());
     }
 
+    
+
 }
