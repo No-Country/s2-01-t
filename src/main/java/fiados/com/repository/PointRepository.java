@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PointRepository extends JpaRepository<Point, Long> {
     List<Point> findAllByIdCostumer(Long id); 
+    List<Point> findAllByIdTrade(Long id); 
 }

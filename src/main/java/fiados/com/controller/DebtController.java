@@ -7,7 +7,6 @@ import fiados.com.service.abstraction.DebtsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,5 +38,8 @@ public class DebtController {
         DebResponseTotal responseTotal = debtService.getTotal(requestTotal);
         return ResponseEntity.status(HttpStatus.OK).body(responseTotal);
     }
+    
+  
+
 
 }
