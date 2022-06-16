@@ -48,6 +48,15 @@ public class PointServiceImpl implements PointService {
             System.out.println("Puntos:" + p.getPoint());
         }
     }
+    @Override
+    public  void findByCustumerId(Long id){
+        List<Point> l=pointRepository.findAllByIdCostumer(id);
+         int suma = l.stream().parallel().mapToInt(Point::getPoint).sum();
+        for(Point p:l){
+            System.out.println("Puntos Totales: " +suma +" De tantos puntos"+ p.getPoint());
+        }
+       
+    }
 //     @Override
 //    public DebResponseTotal getTotal(DebRequestTotal request) {
 //        List<Debt> debts = debtRepository.findByCustomerIdAndTradeIdAndConditions(request.getCustomerId(),request.getTradeId(),request.getConditions());

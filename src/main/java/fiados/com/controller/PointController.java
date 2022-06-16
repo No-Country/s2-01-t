@@ -33,4 +33,10 @@ public class PointController {
     public void getAll(){
         pointService.findAllUserId();        
     }
+     @GetMapping("/customer_all/{id}")
+    @ApiOperation(value = "Search list Point by customer method", notes = "Return list Point by customer " )
+     @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void custoemrToralPoint(@PathVariable Long id){
+        pointService.findByCustumerId(id);
+    }
 }

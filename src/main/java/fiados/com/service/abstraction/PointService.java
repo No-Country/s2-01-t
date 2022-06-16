@@ -8,4 +8,5 @@ public interface PointService {
     Point addPointCustomer(Point point);
     void deleted(Long id);
     void findAllUserId();
+    void findByCustumerId(Long id);
 }
