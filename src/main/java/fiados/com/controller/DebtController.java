@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/debts")
 @Api(value = "Debt Controller", description = "Controllers with respect to Client/Merchant debts")
-@CrossOrigin(origins = "*")
+
 public class DebtController {
     
     @Autowired
@@ -37,9 +39,5 @@ public class DebtController {
     public ResponseEntity<DebResponseTotal> getTotal(@RequestBody DebRequestTotal requestTotal){
         DebResponseTotal responseTotal = debtService.getTotal(requestTotal);
         return ResponseEntity.status(HttpStatus.OK).body(responseTotal);
-    }
-    
-  
-
-
+    }s
 }
