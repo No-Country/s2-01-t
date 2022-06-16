@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/debts")
+@CrossOrigin(origins = "*")
 @Api(value = "Debt Controller", description = "Controllers with respect to Client/Merchant debts")
 public class DebtController {
     
