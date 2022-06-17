@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserDetailsService, AuthService{
     private TradeMapper tradeMapper;
 
     @Override
-    public UserResponse register(UserRegister request) throws EmailAlreadyExistException, IOException {
+    public UserResponse register(UserRegister request) throws EmailAlreadyExistException {
         if(userRepository.findByEmail(request.getEmail()) != null){
             throw new EmailAlreadyExistException();
         }

@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 @Entity
 
 @ApiModel("Model User")
+@Table(name = "users")
 public class User implements UserDetails {
 
     @Id

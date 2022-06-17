@@ -48,7 +48,7 @@ public class ErrorHandler {
     public ResponseEntity<?> handleUsernameNotFoundException(HttpServletRequest request,
                                                              UsernameNotFoundException e) {
         return ResponseEntity.badRequest()
-                .body(buildResponse(e, HttpStatus.INTERNAL_SERVER_ERROR));
+                .body(buildResponse(e, HttpStatus.BAD_REQUEST));
     }
 
     @ExceptionHandler(BadCredentialsException.class)

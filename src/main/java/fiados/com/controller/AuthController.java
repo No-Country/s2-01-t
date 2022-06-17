@@ -26,7 +26,7 @@ public class AuthController {
     private AuthService authService;
     @ApiOperation(value = "Registration method", notes = "Returns a registered user" )
     @PostMapping("/register")
-    public ResponseEntity<UserResponse> register(@Valid @RequestBody UserRegister request) throws EmailAlreadyExistException, IOException {
+    public ResponseEntity<UserResponse> register(@Valid @RequestBody UserRegister request) throws EmailAlreadyExistException {
         UserResponse response = authService.register(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

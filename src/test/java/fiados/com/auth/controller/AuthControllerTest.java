@@ -64,7 +64,7 @@ public class AuthControllerTest extends AbstractBaseIntegrationTest {
     }
 
     @Test
-    public void shouldReturnBadRequestWhenTheEmailAlreadyExist() {
+    public void shouldReturnInternalServerErrorWhenEmailAlreadyExist() {
         when(tradeRepository.findByEmail(eq("marzoa3581@gmail.com"))).thenReturn(new Trade());
 
         UserRegister userTrade = new UserRegister();
@@ -86,7 +86,7 @@ public class AuthControllerTest extends AbstractBaseIntegrationTest {
                 HttpMethod.POST, request, ErrorResponse.class);
 
         Assert.assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-       // Assert.assertEquals("Email already exist.", response.getBody().getMessage());
+        //Assert.assertEquals("Email already exist.", response.getBody().getMessage());
 
     }
 
