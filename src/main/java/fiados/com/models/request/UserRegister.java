@@ -26,10 +26,7 @@ public class UserRegister {
     @NotBlank(message = "Role cannot be empty.")
     private String role;
     @NotBlank(message = "Dni cannot be empty.")
-    private String dni;
-    @NotBlank
-    @NotEmpty(message = "You must entnomer company name")
-    @Size(min = 3, max = 100, message = "Company name must be between 3 and 100 characters long")
+    private String dni; 
     private String company_name;
     protected String city;
     protected String adress;
