@@ -1,4 +1,5 @@
 package fiados.com.controller;
+import fiados.com.exception.EmailAlreadyExistException;
 import fiados.com.models.entity.User;
 import fiados.com.models.request.AuthRequest;
 import fiados.com.models.request.UserRegister;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -24,7 +26,7 @@ public class AuthController {
     private AuthService authService;
     @ApiOperation(value = "Registration method", notes = "Returns a registered user" )
     @PostMapping("/register")
-    public ResponseEntity<UserResponse> register(@Valid @RequestBody UserRegister request){
+    public ResponseEntity<UserResponse> register(@Valid @RequestBody UserRegister request) throws EmailAlreadyExistException, IOException {
         UserResponse response = authService.register(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

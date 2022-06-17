@@ -5,14 +5,18 @@ import fiados.com.models.entity.Customer;
 import fiados.com.models.entity.Debt;
 import fiados.com.models.entity.Point;
 import fiados.com.models.entity.Trade;
+import fiados.com.models.enums.EnumCondition;
 import fiados.com.models.mapper.CustomerMapper;
 import fiados.com.models.mapper.PointMapper;
 import fiados.com.models.request.CommentRequest;
 import fiados.com.models.request.CommentTradeRequest;
 import fiados.com.models.request.CustomerPointRequest;
 import fiados.com.models.request.CustomerRequest;
+import fiados.com.models.request.DebRequestTotal;
+import fiados.com.models.response.CustomerAbsResponse;
 import fiados.com.models.response.CustomerComment;
 import fiados.com.models.response.CustomerResponse;
+import fiados.com.models.response.DebResponseTotal;
 import fiados.com.models.response.PointResponse;
 import fiados.com.repository.CustomerRepository;
 import fiados.com.repository.UserRepository;
@@ -25,7 +29,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -102,10 +105,26 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerResponse> getAllUser() {
-        return customerRepository.findAll().stream()
-                .map(i -> customerMapper.entityToDTO(i))
-                .collect(Collectors.toList());
+    public List<CustomerAbsResponse> getAllUser() {
+        List<Customer> list=customerRepository.findAll();
+     
+        
+        List<CustomerAbsResponse> response=new ArrayList<>();
+        for (Customer customer : list) {
+            List<DebResponseTotal> debtsTotal=new ArrayList<>();
+            
+            List<Long> trades=debtService.debtsTotal(customer.getDebts());
+            for (Long trade : trades) {             
+            debtsTotal.add(debtService.getTotal( DebRequestTotal.builder()
+                    .customerId(customer.getId())
+                    .conditions(EnumCondition.ACTIVATED)
+                    .tradeId(trade)
+                    .build()));
+            }            
+        response.add(customerMapper.entityTodDtoAbs(customer, debtsTotal));
+        }
+       return response;
+        
     }
 
     @Override
@@ -143,7 +162,7 @@ public class CustomerServiceImpl implements CustomerService {
             throw new RuntimeException("error saving merchant data.");
         }
     }
-
+      
     @Override
     public PointResponse customerPoint(CustomerPointRequest request) {
 

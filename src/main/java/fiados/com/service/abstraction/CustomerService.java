@@ -5,6 +5,7 @@ import fiados.com.models.entity.Debt;
 import fiados.com.models.request.CommentTradeRequest;
 import fiados.com.models.request.CustomerPointRequest;
 import fiados.com.models.request.CustomerRequest;
+import fiados.com.models.response.CustomerAbsResponse;
 import fiados.com.models.response.CustomerComment;
 import fiados.com.models.response.CustomerResponse;
 import fiados.com.models.response.PointResponse;
@@ -16,7 +17,7 @@ public interface CustomerService{
     public CustomerResponse update(Long id, CustomerRequest request);    
     public Customer getById(Long id);
     public CustomerResponse findById(Long id);
-    public List<CustomerResponse> getAllUser();
+    public List<CustomerAbsResponse> getAllUser();
     //comments
     public CustomerComment commentUser(CommentTradeRequest comment);
     //debt
@@ -26,4 +27,5 @@ public interface CustomerService{
     PointResponse customerPoint(CustomerPointRequest request);
 
     void save(Customer customer);
+
 }
