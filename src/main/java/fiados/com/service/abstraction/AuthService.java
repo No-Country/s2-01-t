@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface AuthService {
-    UserResponse register(UserRegister request) throws EmailAlreadyExistException, IOException;
+    UserResponse register(UserRegister request) throws EmailAlreadyExistException;
     AuthResponse login(AuthRequest request);
     User getInfoUser();
 
