@@ -25,4 +25,5 @@ public class PointController {
         pointService.deleted(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
 }

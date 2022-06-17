@@ -8,11 +8,19 @@ import fiados.com.models.response.DebResponseTotal;
 import fiados.com.models.response.DebtResponse;
 import fiados.com.models.response.TradeDebtResponce;
 import java.util.List;
+import java.util.Set;
 
 public interface DebtsService {
+
     List<Debt> findByCustomer(Customer customer); //id Customer
+
     TradeDebtResponce findByTrade(String id);
+
     Debt add(DebtRequest debtrequest);
+
     List<DebtResponse> findAllDebt();
+
     DebResponseTotal getTotal(DebRequestTotal requestTotal);
+
+    List<Long> debtsTotal(Set<Debt> debts);
 }

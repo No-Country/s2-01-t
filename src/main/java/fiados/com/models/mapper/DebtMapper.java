@@ -3,6 +3,8 @@ package fiados.com.models.mapper;
 import fiados.com.models.entity.Debt;
 import fiados.com.models.enums.EnumCondition;
 import fiados.com.models.request.DebtRequest;
+import fiados.com.models.response.CustomerDebtTrade;
+import fiados.com.models.response.DebResponseTotal;
 import fiados.com.models.response.DebtResponse;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -38,4 +40,10 @@ public class DebtMapper {
             });
             return debtResponses;
     }
+ 
+      public CustomerDebtTrade ToTotalDebt(DebResponseTotal debt){
+       return null;
+   }
+  
+   
 }

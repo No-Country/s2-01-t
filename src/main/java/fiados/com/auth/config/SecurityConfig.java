@@ -74,7 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/api/v1/user/search").permitAll()
                 .antMatchers(HttpMethod.DELETE,"/user/{id}").permitAll() //hasAnyAuthority("ROLE_ADMIN")
                 .antMatchers(HttpMethod.GET,"/user/me").permitAll()
-                .antMatchers(HttpMethod.GET,"/api/v1/user/all").permitAll()
+                //.antMatchers(HttpMethod.GET,"/api/v1/user/all").permitAll()
                 //category
                 .antMatchers(HttpMethod.GET,"/api/vi/category").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/category/{id}").permitAll()
@@ -106,6 +106,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT,"/api/v1/branch/{id}").permitAll()
                     //Point
                 .antMatchers(HttpMethod.DELETE,"api/v1/point/{id}").permitAll()
+                .antMatchers(HttpMethod.GET,"api/v1/point/all").permitAll()
+                .antMatchers(HttpMethod.GET,"api/v1/point//customer_all/{id}").permitAll()
                     //Debt
                 .antMatchers(HttpMethod.GET,"/debts/list").permitAll()
                 .antMatchers(HttpMethod.GET,"/debts/total").permitAll()

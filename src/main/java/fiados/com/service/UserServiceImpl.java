@@ -1,6 +1,7 @@
 package fiados.com.service;
 
 import fiados.com.auth.service.JwtUtil;
+import fiados.com.exception.EmailAlreadyExistException;
 import fiados.com.models.entity.Customer;
 import fiados.com.models.entity.Role;
 import fiados.com.models.entity.Trade;
@@ -28,8 +29,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 @Service
@@ -59,9 +63,9 @@ public class UserServiceImpl implements UserDetailsService, AuthService{
     private TradeMapper tradeMapper;
 
     @Override
-    public UserResponse register(UserRegister request) {
+    public UserResponse register(UserRegister request) throws EmailAlreadyExistException {
         if(userRepository.findByEmail(request.getEmail()) != null){
-            throw new RuntimeException(USER_EMAIL_ERROR);
+            throw new EmailAlreadyExistException();
         }
        if(request.getRole().equalsIgnoreCase("client")) {
            Customer customer = userMapper.entityToDTO(request);
