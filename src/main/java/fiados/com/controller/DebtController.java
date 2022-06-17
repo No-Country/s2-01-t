@@ -39,5 +39,5 @@ public class DebtController {
     public ResponseEntity<DebResponseTotal> getTotal(@RequestBody DebRequestTotal requestTotal){
         DebResponseTotal responseTotal = debtService.getTotal(requestTotal);
         return ResponseEntity.status(HttpStatus.OK).body(responseTotal);
-    }s
+    }
 }

@@ -1,7 +1,9 @@
 package fiados.com.auth;
 
+import fiados.com.models.entity.Customer;
 import fiados.com.models.entity.Role;
 import fiados.com.models.entity.Trade;
+import fiados.com.repository.CustomerRepository;
 import fiados.com.repository.TradeRepository;
 import fiados.com.service.abstraction.RoleService;
 import org.assertj.core.util.Lists;
@@ -17,6 +19,8 @@ public class AbstractBaseIntegrationTest {
 
     @MockBean
     protected TradeRepository tradeRepository;
+    @MockBean
+    protected CustomerRepository customerRepository;
     @MockBean
     protected AuthenticationManager authenticationManager;
     protected org.springframework.http.HttpHeaders headers = new HttpHeaders();
@@ -62,6 +66,22 @@ public class AbstractBaseIntegrationTest {
         trade.setRoles(Lists.list(stubRole(name)));
         return trade;
 
+    }
+    protected Customer stubCustomer(String name){
+        Customer customer = new Customer();
+        customer.setId(TRADE_ID);
+        customer.setDni("12345678");
+        customer.setAdress("address");
+        customer.setCity("city");
+        customer.setRole("client");
+        customer.setFirstName("first");
+        customer.setLastName("last");
+        customer.setEmail("marzoa3581@gmail.com");
+        customer.setSoftDelete(false);
+        customer.setCountry("argentina");
+        customer.setPassword("12345678");
+        customer.setRoles(Lists.list(stubRole(name)));
+        return customer;
     }
 
 
