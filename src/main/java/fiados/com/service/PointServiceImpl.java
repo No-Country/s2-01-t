@@ -39,8 +39,10 @@ public class PointServiceImpl implements PointService {
     }
     
     @Override
-    public int totalPoint(List<Point> points){     
+    public int totalPoint(List<Point> points){ 
+        if(!points.isEmpty()){
         return points.stream().parallel().mapToInt(Point::getPoint).sum();
+      }return 0;        
     }
- 
+    
 }
