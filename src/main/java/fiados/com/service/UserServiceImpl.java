@@ -14,6 +14,7 @@ import fiados.com.models.request.AuthRequest;
 import fiados.com.models.request.UserRegister;
 import fiados.com.models.response.AuthResponse;
 import fiados.com.models.response.UserFilterResponse;
+import fiados.com.models.response.UserInfoResponse;
 import fiados.com.models.response.UserResponse;
 import fiados.com.repository.CustomerRepository;
 import fiados.com.repository.TradeRepository;
@@ -30,10 +31,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
 
 
 @Service
@@ -149,6 +149,14 @@ public class UserServiceImpl implements UserDetailsService, AuthService{
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return getUser(username);
+    }
+
+    @Override
+    public UserInfoResponse getInfoUserReposne() {
+        User u=getInfoUser();
+        
+        return userMapper.userDto(u);
+                
     }
 
 }

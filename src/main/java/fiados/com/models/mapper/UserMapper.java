@@ -7,6 +7,7 @@ import fiados.com.models.enums.EnumCondition;
 import fiados.com.models.request.UserRegister;
 import fiados.com.models.response.UserFilterResponse;
 import fiados.com.models.response.ListUserResponse;
+import fiados.com.models.response.UserInfoResponse;
 import fiados.com.models.response.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -115,5 +116,16 @@ public class UserMapper {
                 .country(user.getCountry())
                 .build();
 
+    }
+    public UserInfoResponse userDto(User u){
+        return UserInfoResponse.builder()
+                .id(u.getId())
+                .firstName(u.getFirstName())
+                .lastName(u.getLastName())
+                .role(u.getRole())
+                .adress(u.getAdress())
+                .city(u.getCity())
+                .country(u.getCountry())                
+                .build();
     }
 }
