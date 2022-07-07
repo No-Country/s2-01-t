@@ -4,6 +4,7 @@ import fiados.com.models.entity.User;
 import fiados.com.models.request.AuthRequest;
 import fiados.com.models.request.UserRegister;
 import fiados.com.models.response.AuthResponse;
+import fiados.com.models.response.UserInfoResponse;
 import fiados.com.models.response.UserResponse;
 import fiados.com.service.abstraction.AuthService;
 import io.swagger.annotations.Api;
@@ -38,7 +39,7 @@ public class AuthController {
     }
     @ApiOperation(value = "Method that returns all the data of the user logged in the system", notes = "Returns a info user" )
     @GetMapping("/me")
-    public ResponseEntity<User> getInfoUser(){
-        return new ResponseEntity<>(authService.getInfoUser(), HttpStatus.OK);
+    public ResponseEntity<UserInfoResponse> getInfoUser(){
+        return new ResponseEntity<>(authService.getInfoUserReposne(), HttpStatus.OK);
     }
 }
