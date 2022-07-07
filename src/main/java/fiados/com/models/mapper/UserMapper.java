@@ -123,6 +123,8 @@ public class UserMapper {
                 .firstName(u.getFirstName())
                 .lastName(u.getLastName())
                 .role(u.getRole())
+                .email(u.getEmail())
+                .dni(u.getDni())
                 .adress(u.getAdress())
                 .city(u.getCity())
                 .country(u.getCountry())                
