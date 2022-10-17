@@ -36,6 +36,7 @@ public class CustomerController {
 
     @ApiOperation(value = "Method to search for a list of clients", notes = "Return list client")
     @GetMapping("/all")
+     @ResponseStatus(HttpStatus.NOT_FOUND)
     public List<CustomerAbsResponse> getAllCustomers() {
         return customerService.getAllUser();
     }

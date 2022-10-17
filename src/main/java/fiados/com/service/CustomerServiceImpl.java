@@ -110,11 +110,16 @@ public class CustomerServiceImpl implements CustomerService {
      
         
         List<CustomerAbsResponse> response=new ArrayList<>();
+        if(list.isEmpty()){
+              throw new RuntimeException("List client empty.");
+        }
         for (Customer customer : list) {
             List<DebResponseTotal> debtsTotal=new ArrayList<>();
             
+            if(!customer.getDebts().isEmpty()){
             List<Long> trades=debtService.debtsTotal(customer.getDebts());
-            for (Long trade : trades) {             
+          
+              for (Long trade : trades) {             
             debtsTotal.add(debtService.getTotal( DebRequestTotal.builder()
                     .customerId(customer.getId())
                     .conditions(EnumCondition.ACTIVATED)
@@ -122,6 +127,10 @@ public class CustomerServiceImpl implements CustomerService {
                     .build()));
             }            
         response.add(customerMapper.entityTodDtoAbs(customer, debtsTotal));
+        }else{
+                 response.add(customerMapper.entityTodDtoAbs(customer,debtsTotal));
+              }
+           
         }
        return response;
         
